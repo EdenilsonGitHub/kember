@@ -54,3 +54,26 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+############################ Gems ############################
+
+# Debugador
+gem 'pry'
+
+# Fonte awesome
+gem 'font-awesome-rails'
+
+# Criptografia
+gem 'bcrypt-ruby'
+gem 'bcrypt'
+
+# Validações
+gem 'client_side_validations'
+
+# Imagens
+gem "paperclip", "~> 6.0.0"
+gem 'cocaine', '0.3.2'
+
+# Pdf
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
