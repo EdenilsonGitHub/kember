@@ -10,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_001216) do
+ActiveRecord::Schema.define(version: 2021_09_21_020655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "empresas", force: :cascade do |t|
+    t.string "nome"
+    t.string "nome_fantasia"
+    t.string "sigla"
+    t.string "cnpj"
+    t.string "telefone"
+    t.string "email"
+    t.boolean "ativo"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.integer "logo_file_size"
+    t.datetime "logo_updated_at"
+  end
 
   create_table "usuarios", force: :cascade do |t|
     t.string "nome"
