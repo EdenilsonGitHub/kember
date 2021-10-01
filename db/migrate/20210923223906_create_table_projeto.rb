@@ -8,6 +8,5 @@ class CreateTableProjeto < ActiveRecord::Migration[6.1]
       t.integer  :empresa_id
       t.timestamps
     end
-    add_attachment :usuarios, :foto
   end
 end
