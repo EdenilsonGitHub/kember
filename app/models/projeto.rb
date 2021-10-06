@@ -9,5 +9,6 @@ class Projeto < ActiveRecord::Base
     belongs_to :empresa
 
     has_many :sprints
+    has_many :status
 
 end 
