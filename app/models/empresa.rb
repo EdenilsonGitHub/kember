@@ -13,5 +13,6 @@ class Empresa < ActiveRecord::Base
     validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
     has_many :projetos
+    has_many :status
 
 end 
