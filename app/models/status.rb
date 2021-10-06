@@ -6,5 +6,6 @@ class Status < ActiveRecord::Base
     validates :nome, length: { maximum: 30, message: 'é muito longo (máximo: 30 caracteres)' }
     
     belongs_to :empresa
+    belongs_to :projeto
 
 end
