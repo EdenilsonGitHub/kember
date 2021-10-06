@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_015919) do
+ActiveRecord::Schema.define(version: 2021_10_01_015233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2021_10_01_015919) do
     t.string "logo_content_type"
     t.integer "logo_file_size"
     t.datetime "logo_updated_at"
-    t.integer "usuario_empresa_id"
   end
 
   create_table "projetos", force: :cascade do |t|
@@ -49,7 +48,6 @@ ActiveRecord::Schema.define(version: 2021_10_01_015919) do
     t.integer "empresa_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "usuario_projeto_id"
   end
 
   create_table "quadros", force: :cascade do |t|
@@ -97,8 +95,6 @@ ActiveRecord::Schema.define(version: 2021_10_01_015919) do
     t.string "foto_content_type"
     t.integer "foto_file_size"
     t.datetime "foto_updated_at"
-    t.integer "usuario_empresa_id"
-    t.integer "usuario_projeto_id"
   end
 
   create_table "usuarios_empresas", force: :cascade do |t|
