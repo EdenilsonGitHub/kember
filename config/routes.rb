@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :home, only: :index
+  resources :projetos
 
   # Rota inicial
   root :to => 'home#index'

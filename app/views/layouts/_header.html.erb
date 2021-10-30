@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md fixed-top top-nav">
+<nav class="navbar navbar-expand-md fixed-top top-nav" style="background-color: #9524E3">
     <div class="container">
         <a class="navbar-brand" href="#"><strong>Kember</strong></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                    <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %><span class="sr-only">(current)</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre</a>
