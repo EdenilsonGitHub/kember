@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top top-nav" style="background-color: #9524E3">
     <div class="container">
-        <a class="navbar-brand" href="#"><strong>Kember</strong></a>
+        <%= link_to 'Kember', home_index_path(), class: 'navbar-brand', style: 'font-weight: bold' %>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 		    <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i></span>
 		  </button>
@@ -22,10 +22,24 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Suporte</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contate-nos</a>
-                </li>
+                <% if cookies[:id].blank? %>
+                    <li class="nav-item">
+                        <%= link_to 'Entrar', login_path(), class: 'nav-link' %>
+                    </li>
+                <% else %>
+                    <li class="nav-list-item"">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-padrao nav-link"><%= @usuario_logado.nome %></button>
+                            <button type="button" class="btn btn-padrao dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" style="padding-left: 8px!important; color: white"></button>
+                            <div class="dropdown-menu ml-118px">
+                                <%= link_to 'Minha conta', usuario_path(@usuario_logado), class: 'dropdown-item background-color-padrao color-padrao drop-first-list' %>
+                                <%= link_to 'Sair', sair_path, class: 'dropdown-item background-color-padrao color-padrao drop-last-list'%>
+                            </div>
+                        </div>
+                    </li>
+                <% end %>
             </ul>
         </div>
     </div>
 </nav>
+<div style="width: 100%; height: 80px"></div>

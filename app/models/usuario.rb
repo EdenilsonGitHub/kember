@@ -15,10 +15,17 @@ class Usuario < ActiveRecord::Base
     validates :nome, length: { maximum: 45, message: 'é muito longo (máximo: 45 caracteres)' }
     validates :login, length: { maximum: 30, message: 'é muito longo (máximo: 13 caracteres)' }
 
-    has_attached_file :logo, styles: { normal: "300x300>" }
-    validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
+    has_attached_file :foto, styles: { normal: "300x300>" }
+    validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/
 
     has_many :quadros
+
+    def validou(senha)
+        senha = Digest::SHA256.hexdigest senha
+        if self.senha == senha
+            return true
+        end
+    end
 
     private
 
