@@ -1,0 +1,83 @@
+<div style="width: 80%; margin: 0 auto">
+    <div style="width: 100%; text-align: center; margin-top: 25px; font-size: 25px">
+        <span style="margin: 0 auto; width: 100%">Criação de usuário</span>
+    </div>
+    <%= form_for @usuario, class: 'formulario_criacao_usuario', validate:true do |u| %>
+        <% if @usuario.errors.any? %>
+            <div class="fundo_erro">
+                <h5 class="text-center" style="padding-top: 5px">Revise as informações abaixo: </h5>
+                <p> </p>
+                <ul>
+                <% @usuario.errors.full_messages.each do |msg| %>
+                <li><%= msg.humanize %></li>
+                <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+        <label class="label_formulario">
+            <p class="label-txt">Foto</p>
+            <%= u.file_field :foto, class: 'input' %>    
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <label class="label_formulario">
+            <p class="label-txt">Nome</p>
+            <%= u.text_field :nome, class: 'input' %>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <label class="label_formulario">
+            <p class="label-txt">Login</p>
+            <%= u.text_field :login, class: 'input' %>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <label class="label_formulario">
+            <p class="label-txt">Senha</p>
+            <%= u.password_field :senha, class: 'input' %>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <label class="label_formulario">
+            <p class="label-txt">Confirmação de senha</p>
+            <%= u.password_field :senha_confirmation, class: 'input' %>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <label class="label_formulario">
+            <p class="label-txt">Email</p>
+            <%= u.text_field :email, class: 'input' %>
+            <div class="line-box">
+                <div class="line"></div>
+            </div>
+        </label>
+        <div  style="width: 100%; text-align: center; display: inline-block">
+            <div style="display: inline-block">
+                <%= link_to("Cancelar", home_index_path, class: 'btn btn-danger', style: 'margin: 0 auto') %>
+            </div>
+            <div style="display: inline-block">
+                <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
+            </div>
+        </div>
+    <% end %>
+</div>
+<div style="height: 25px; width: 100%">
+</div>
+<script>
+    $(document).ready(function() {
+        $('.input').focus(function() {
+            $(this).parent().find(".label-txt").addClass('label-active');
+        });
+        $(".input").focusout(function() {
+            if ($(this).val() == '') {
+                $(this).parent().find(".label-txt").removeClass('label-active');
+            };
+        });
+    });
+</script>
