@@ -1,20 +1,45 @@
-.botoes-projetos{
-    padding: 15px 200px 15px 200px; 
+.botoes-projetos-atual,
+.botoes-projetos {
+    padding: 15px 200px 15px 200px;
     border-bottom: 2px solid #9525E3;
-    color: #9525E3;
     text-decoration: none;
 }
 
+.botoes-projetos {
+    color: #9525E3;
+}
+
+.botoes-projetos-atual {
+    color: #451566;
+    font-weight: bold;
+}
+
+.botoes-projetos-atual:hover,
 .botoes-projetos:hover {
     transition: padding 1s;
     transition-timing-function: ease;
     padding: 15px 230px 15px 200px;
-    border-right: 15px solid #9525E3;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-.botoes-projetos:link, .botoes-projetos:visited {
+.botoes-projetos:hover {
+    border-right: 15px solid #9525E3;
+}
+
+.botoes-projetos-atual:hover {
+    border-right: 15px solid #451566;
+}
+
+.botoes-projetos:link,
+.botoes-projetos:visited {
     color: #9525E3;
     text-decoration: none;
+}
+
+.botoes-projetos-atual:link,
+.botoes-projetos-atual:visited {
+    color: #451566;
+    text-decoration: none;
+    font-weight: bold;
 }

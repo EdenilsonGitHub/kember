@@ -6,6 +6,7 @@ class ProjetosController < ApplicationController
 
     def show
         @projeto = Projeto.find_by_id(params[:id])
+        @sprints = @projeto.sprints
     end
 
 end
