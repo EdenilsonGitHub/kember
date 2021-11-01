@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :home, only: :index
   resources :projetos
   resources :usuarios
+  resources :sprints
 
   # Application
   get 'sair', to: 'application#sair', as: :sair
@@ -9,6 +10,11 @@ Rails.application.routes.draw do
   # Usuarios
   post 'logar',to: 'usuarios#logar', as: :logar
   get  'login',to: 'usuarios#login', as: :login
+  
+  #Sprint
+  get  'mover_tarefa',to: 'sprints#mover_tarefa', as: :mover_tarefa
+  # put  'atualiza_quadro',to: 'sprints#atualiza_quadro', as: :atualiza_quadro
+  get  'atualiza_quadro',to: 'sprints#atualiza_quadro', as: :atualiza_quadro
 
   # Rota inicial
   root :to => 'home#index'

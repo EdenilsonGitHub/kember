@@ -10,5 +10,6 @@ class Projeto < ActiveRecord::Base
 
     has_many :sprints
     has_many :status
+    has_many :colunas
 
 end 
