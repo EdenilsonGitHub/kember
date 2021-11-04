@@ -26,4 +26,10 @@ class SprintsController < ApplicationController
         Quadro.find_by_id(params[:quadro]).update(coluna_id: params[:coluna_selecionada])
     end
 
+    def adicionar_quadro
+        @coluna = Coluna.find_by_id(params[:coluna])
+        @quadro = Quadro.new
+        @sprint = Sprint.find_by_id(params[:sprint])
+    end
+
 end
