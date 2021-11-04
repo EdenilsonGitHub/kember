@@ -8,8 +8,22 @@
     color: #9525E3
 }
 
+.adicionar_tarefa {
+    background-color: rgba(255, 255, 255, 0.481);
+    text-decoration: none;
+    border: 1px solid #9425e37e;
+    color: #9425e37c
+}
+
 .att_quadro:hover {
     background-color: #9525E3;
     color: white;
     text-decoration: none;
+}
+
+.adicionar_tarefa:hover {
+    background-color: rgb(255, 255, 255);
+    text-decoration: none;
+    border: 1px solid #9425e3;
+    color: #9425e3;
 }

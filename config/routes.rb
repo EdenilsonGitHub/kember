@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :projetos
   resources :usuarios
   resources :sprints
+  resources :quadros
 
   # Application
   get 'sair', to: 'application#sair', as: :sair
@@ -13,8 +14,8 @@ Rails.application.routes.draw do
   
   #Sprint
   get  'mover_tarefa',to: 'sprints#mover_tarefa', as: :mover_tarefa
-  # put  'atualiza_quadro',to: 'sprints#atualiza_quadro', as: :atualiza_quadro
   get  'atualiza_quadro',to: 'sprints#atualiza_quadro', as: :atualiza_quadro
+  get  'adicionar_quadro',to: 'sprints#adicionar_quadro', as: :adicionar_quadro
 
   # Rota inicial
   root :to => 'home#index'
