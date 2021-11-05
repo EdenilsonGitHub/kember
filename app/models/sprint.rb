@@ -8,4 +8,6 @@ class Sprint < ActiveRecord::Base
     
     belongs_to :projeto
 
+    has_many :quadros
+
 end 

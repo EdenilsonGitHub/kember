@@ -9,4 +9,9 @@ class ProjetosController < ApplicationController
         @sprints = @projeto.sprints
     end
 
+    def backlog
+        @projeto = Projeto.find_by_id(params[:projeto_id])
+        @quadros = Quadro.where(sprint_id: nil).where(coluna_id: @projeto.colunas.pluck(:id))
+    end
+
 end

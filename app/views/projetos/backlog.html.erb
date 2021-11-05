@@ -1,0 +1,81 @@
+<div style="margin-top: 20px; text-align: center; margin-bottom: 150px">
+    <div style="width: 100%; height: 300px; display: inline-block; margin: 0 auto;">
+        <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+            Backlog
+        </div>
+    <div>
+    <div style="height: 20px; width: 100%"></div>
+    <div style="margin-top: 40px!important; text-align: center; margin-bottom: 150px; height: 500px">
+        <% @projeto.sprints.order('sprint_atual').each do |sprint| %>
+            <table style="background-color: white; width: 90%; margin: 0 auto;" class="table-bordered">
+                <thead>
+                    <tr>
+                        <th colspan="3" style="font-size: 25px; border-right-style: hidden; border-top-style: hidden; border-left-style: hidden;">
+                            <div style="display: inline-block; <%= 'margin-left: 32px' if sprint.sprint_atual %>">
+                                <%= sprint.nome %>
+                            </div>
+                            <div style="display: <%= sprint.sprint_atual ? 'inline-block' : 'none' %>; font-size: 10px; vertical-align: top; color: red">
+                                Ativa
+                            </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if sprint.quadros.any? %>
+                        <% sprint.quadros.each do |quadro| %>
+                            <tr>
+                                <td scope="row" style="text-align: left; padding: 15px">
+                                    <%= quadro.nome %>
+                                </td>
+                                <td scope="row" style="width: 50px; height: 50px; background-color: #191919; color: white; padding: 15px">
+                                    <%= quadro.pontuacao %>
+                                </td>
+                                <td scope="row" style="width: 100px; padding: 15px; height: 50px; background-color: <%= quadro.status.cor_fundo %>; color: <%= quadro.status.cor_fonte %>">
+                                    <%= quadro.status.nome %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    <% else %>
+                        <tr>
+                            <td scope="row" style="text-align: left; color: red; padding: 15px">
+                                Sem registros
+                            </td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+            <div style="height: 40px; width: 100%"></div>
+        <% end %>
+        <table style="background-color: white; width: 90%; margin: 0 auto;" class="table-bordered">
+            <thead>
+                <tr>
+                    <th colspan="3" style="font-size: 25px; border-right-style: hidden; border-top-style: hidden; border-left-style: hidden;" scope="col">Sprint backlog</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if @quadros.any? %>
+                    <% @quadros.each do |quadro| %>
+                        <tr>
+                            <td scope="row" style="text-align: left; padding: 15px">
+                                <%= quadro.nome %>
+                            </td>
+                            <td scope="row" style="padding: 15px; width: 50px; height: 50px; background-color: #191919; color: white">
+                                <%= quadro.pontuacao %>
+                            </td>
+                            <td scope="row" style="padding: 15px; width: 100px; height: 50px; background-color: <%= quadro.status.cor_fundo %>; color: <%= quadro.status.cor_fonte %>">
+                                <%= quadro.status.nome %>
+                            </td>
+                        </tr>
+                    <% end %>
+                <% else %>
+                    <tr>
+                        <td scope="row" style="text-align: left; color: red; padding: 15px">
+                            Sem registros
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+        <div style="height: 40px; width: 100%"></div>
+    </div>
+</div>
