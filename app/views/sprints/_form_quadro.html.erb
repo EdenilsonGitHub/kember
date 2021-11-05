@@ -32,6 +32,7 @@
     <%= u.hidden_field :usuario_id, value: @usuario_logado.id %>
     <%= u.hidden_field :status_id, value: Status.first.id %>
     <%= u.hidden_field :coluna_id, value: @coluna.id %>
+    <%= u.hidden_field :sprint_id, value: @sprint.id %>
     <%= hidden_field_tag :projeto_id, @coluna.projeto.id %>
     <%= hidden_field_tag :sprint_id, @sprint.id %>
     <div style="width: 100%; text-align: center">

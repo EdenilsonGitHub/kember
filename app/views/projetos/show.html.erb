@@ -12,6 +12,11 @@
                 </tr>
             </thead>
             <tbody>
+                <tr>
+                    <td style="padding: 15px 40px 15px 40px">
+                        <%= link_to "Backlog", backlog_path(projeto_id: @projeto.id), class: "botoes-backlog" %>
+                    </td>
+                </tr>
                 <% @sprints.each do |sprint| %>
                     <tr>
                         <td style="padding: 15px 40px 15px 40px">

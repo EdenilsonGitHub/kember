@@ -5,6 +5,13 @@
     text-decoration: none;
 }
 
+.botoes-backlog {
+    padding: 15px 200px 15px 200px;
+    border-bottom: 2px solid #257df0;
+    text-decoration: none;
+    color: #257df0;
+}
+
 .botoes-projetos {
     color: #9525E3;
 }
@@ -21,6 +28,15 @@
     padding: 15px 230px 15px 200px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+}
+
+.botoes-backlog:hover {
+    transition: padding 1s;
+    transition-timing-function: ease;
+    padding: 15px 230px 15px 200px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-right: 15px solid #257df0;
 }
 
 .botoes-projetos:hover {
@@ -40,6 +56,13 @@
 .botoes-projetos-atual:link,
 .botoes-projetos-atual:visited {
     color: #451566;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.botoes-backlog:link,
+.botoes-backlog:visited {
+    color: #257df0;
     text-decoration: none;
     font-weight: bold;
 }

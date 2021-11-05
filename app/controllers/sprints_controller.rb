@@ -4,6 +4,12 @@ class SprintsController < ApplicationController
         @sprint = Sprint.find_by_id(params[:id])
         @projeto = @sprint.projeto
         @colunas = @projeto.colunas
+        @colunas_ids = @projeto.colunas.pluck(:id)
+        @hash_quadros = {}
+        @colunas_ids.each do |col|
+            @hash_quadros[col] = {}
+            @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
+        end
     end
 
     def mover_tarefa
