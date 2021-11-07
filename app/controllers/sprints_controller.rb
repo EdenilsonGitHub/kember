@@ -4,12 +4,7 @@ class SprintsController < ApplicationController
         @sprint = Sprint.find_by_id(params[:id])
         @projeto = @sprint.projeto
         @colunas = @projeto.colunas
-        @colunas_ids = @projeto.colunas.pluck(:id)
-        @hash_quadros = {}
-        @colunas_ids.each do |col|
-            @hash_quadros[col] = {}
-            @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
-        end
+        carrega_quadros()
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
     end
 
@@ -20,6 +15,7 @@ class SprintsController < ApplicationController
         @coluna_atual = @projeto.colunas.find_by_id(params[:coluna_atual])
         @proximas_colunas = @projeto.colunas.where("id <> (?)", @coluna_atual.id)
         @quadro = @coluna_atual.quadros.find_by_id(params[:quadro])
+        carrega_quadros()
         respond_to do |format|
             format.html
             format.js
@@ -30,7 +26,10 @@ class SprintsController < ApplicationController
         @projeto = Projeto.find_by_id(params[:projeto])
         @sprint = @projeto.sprints.find_by_id(params[:sprint])
         @colunas = Coluna.where(id: params[:colunas])
-        Quadro.find_by_id(params[:quadro]).update(coluna_id: params[:coluna_selecionada])
+        @quadro = Quadro.find_by_id(params[:quadro])
+        @coluna_selecionada = Coluna.find_by_id(params[:coluna_selecionada])
+        @quadro.update(coluna_id: params[:coluna_selecionada], status_id: @coluna_selecionada.status.id)
+        carrega_quadros()
     end
 
     def adicionar_quadro
@@ -68,12 +67,7 @@ class SprintsController < ApplicationController
         @projeto = Projeto.find_by_id(params[:projeto])
         @colunas = @projeto.colunas
         @sprint = Sprint.find_by_id(params[:sprint])
-        @colunas_ids = @projeto.colunas.pluck(:id)
-        @hash_quadros = {}
-        @colunas_ids.each do |col|
-            @hash_quadros[col] = {}
-            @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
-        end
+        carrega_quadros()
     end
 
     def deixar_tarefa
@@ -83,6 +77,10 @@ class SprintsController < ApplicationController
         @projeto = Projeto.find_by_id(params[:projeto])
         @colunas = @projeto.colunas
         @sprint = Sprint.find_by_id(params[:sprint])
+        carrega_quadros()
+    end
+
+    def carrega_quadros
         @colunas_ids = @projeto.colunas.pluck(:id)
         @hash_quadros = {}
         @colunas_ids.each do |col|
