@@ -62,4 +62,33 @@ class SprintsController < ApplicationController
         @projeto = Projeto.find_by_id(params[:projeto_id])
     end
 
+    def assumir_tarefa
+        @quadro = Quadro.find_by_id(params[:quadro_id])
+        @quadro.update(usuario_id: params[:usuario_id])
+        @projeto = Projeto.find_by_id(params[:projeto])
+        @colunas = @projeto.colunas
+        @sprint = Sprint.find_by_id(params[:sprint])
+        @colunas_ids = @projeto.colunas.pluck(:id)
+        @hash_quadros = {}
+        @colunas_ids.each do |col|
+            @hash_quadros[col] = {}
+            @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
+        end
+    end
+
+    def deixar_tarefa
+        @quadro = Quadro.find_by_id(params[:quadro_id])
+        @quadro.usuario_id = nil
+        @quadro.save(validate: false)
+        @projeto = Projeto.find_by_id(params[:projeto])
+        @colunas = @projeto.colunas
+        @sprint = Sprint.find_by_id(params[:sprint])
+        @colunas_ids = @projeto.colunas.pluck(:id)
+        @hash_quadros = {}
+        @colunas_ids.each do |col|
+            @hash_quadros[col] = {}
+            @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
+        end
+    end
+
 end

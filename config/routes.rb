@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get  'adicionar_novo_usuario', to: 'sprints#adicionar_novo_usuario', as: :adicionar_novo_usuario
   post 'buscar_usuario',         to: 'sprints#buscar_usuario',         as: :buscar_usuario
   get  'adicionar_usuario',      to: 'sprints#adicionar_usuario',      as: :adicionar_usuario
+  get  'assumir_tarefa',         to: 'sprints#assumir_tarefa',         as: :assumir_tarefa
+  get  'deixar_tarefa',          to: 'sprints#deixar_tarefa',          as: :deixar_tarefa
   
   # Projeto
   get  'backlog', to: 'projetos#backlog', as: :backlog
