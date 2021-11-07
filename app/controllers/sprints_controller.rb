@@ -38,4 +38,9 @@ class SprintsController < ApplicationController
         @sprint = Sprint.find_by_id(params[:sprint])
     end
 
+    def lista_prioridades
+        @sprint = Sprint.find_by_id(params[:sprint_id])
+        @quadros = @sprint.quadros.order('rank DESC')
+    end
+
 end
