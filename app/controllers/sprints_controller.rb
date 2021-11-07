@@ -89,4 +89,15 @@ class SprintsController < ApplicationController
         end
     end
 
+    def next_prioridade
+        @sprint = Sprint.find_by_id(params[:sprint_id])
+        @projeto = @sprint.projeto
+        @colunas = @projeto.colunas
+        @quadro = @sprint.quadros.joins(:status).where('status.finalizador = false').order('rank DESC, status.rank ASC').first
+        @proximo_status = @projeto.status.where('rank > (?)', @quadro.status.rank).order('rank').first
+        @proxima_coluna = Coluna.where(status_id: @proximo_status.id).first
+        @quadro.update(usuario_id: @usuario_logado.id, status_id: @proximo_status.id, coluna_id: @proxima_coluna.id)
+        carrega_quadros()
+    end
+
 end

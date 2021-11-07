@@ -1,17 +1,18 @@
 <div style="margin-top: 20px; text-align: center; margin-bottom: 150px; overflow: auto">
     <div style="width: 100%; height: 50px; display: inline-block; margin: 0 auto">
-        <div style="display: inline-block; width: 23vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: #9525E3; color: white; font-weight: bold;">
+        <div style="display: inline-block; width: 19vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: #9525E3; color: white; font-weight: bold;">
             <%= @projeto.nome %>
         </div>
-        <div style="display: inline-block; width: 23vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #9525E3; border: 1px solid #9525E3;font-weight: bold;">
+        <div style="display: inline-block; width: 19vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #9525E3; border: 1px solid #9525E3;font-weight: bold;">
             <%= @sprint.nome %>
         </div>
-        <div class="usuarios-sprint" style="display: inline-block; width: 23vw; height: 45px; padding-top: 1px; padding-left: 1px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #257df0; border: 1px solid #257df0;font-weight: bold; overflow: auto; text-align: left;">
+        <div class="usuarios-sprint" style="display: inline-block; width: 19vw; height: 45px; padding-top: 1px; padding-left: 1px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; border: 1px solid #EEEDF0;font-weight: bold; overflow: auto; text-align: left;">
             <%= render('usuarios') %>
         </div>
-        <div style="display: inline-block; width: 23vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #257df0; border: 1px solid #257df0;font-weight: bold;">
+        <div style="display: inline-block; width: 19vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; border: 1px solid #257df0;font-weight: bold;">
             <%= link_to 'Lista de prioridades', lista_prioridades_path(sprint_id: @sprint.id), class: 'lista_prioridades', remote: true %>
         </div>
+        <%= link_to 'Next', next_prioridade_path(sprint_id: @sprint.id), class: 'next', remote: true %>
     </div>
     <div class="atualiza_sprint">
         <%= render('sprint') %>
