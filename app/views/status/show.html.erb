@@ -1,0 +1,37 @@
+<div class="div-titulo">
+    Status
+</div>
+<table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @status.any? ? 'table-bordered' : '' %>">
+    <% if @status.any? %>
+        <thead>
+            <tr>
+                <th style="padding: 5px; padding-left: 15px">
+                    Nome
+                </th>
+                <th style="padding: 5px; padding-left: 15px">
+                    Demonstração
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <% @status.each do |status| %>
+                    <tr>
+                        <td scope="row" style="text-align: left; padding: 15px">
+                            <%= status.nome %>
+                        </td>
+                        <td scope="row" style="width: 100px; padding: 15px; height: 50px; background-color: <%= status.cor_fundo %>; color: <%= status.cor_fonte %>">
+                            Demonstração
+                        </td>
+                    </tr>
+                <% end %>
+        </tbody>
+    <% else %>
+        <tbody>
+            <tr>
+                <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                    Sem registros
+                </td>
+            </tr>
+        </tbody>
+    <% end %>
+</table>
