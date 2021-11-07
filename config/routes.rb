@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :usuarios
   resources :sprints
   resources :quadros
+  resources :status
 
   # Application
   get 'sair', to: 'application#sair', as: :sair
