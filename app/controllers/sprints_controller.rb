@@ -10,6 +10,7 @@ class SprintsController < ApplicationController
             @hash_quadros[col] = {}
             @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
         end
+        @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
     end
 
     def mover_tarefa
@@ -41,6 +42,24 @@ class SprintsController < ApplicationController
     def lista_prioridades
         @sprint = Sprint.find_by_id(params[:sprint_id])
         @quadros = @sprint.quadros.joins(:status).order('rank DESC, status.rank ASC')
+    end
+
+    def adicionar_novo_usuario
+        @projeto = Projeto.find_by_id(params[:projeto_id])
+    end
+
+    def buscar_usuario
+        @usuarios_projeto = Usuario.where(id: UsuarioProjeto.where(projeto_id: params[:projeto_id]).pluck(:usuario_id))
+        @usuarios = Usuario.where('nome = :nome_email OR email = :nome_email', nome_email: params[:nome_email])
+        @usuarios = @usuarios.reject{|usr| usr.in?(@usuarios_projeto) }
+        @parametro_nome_email = params[:nome_email]
+        @projeto = Projeto.find_by_id(params[:projeto_id])
+    end
+
+    def adicionar_usuario
+        UsuarioProjeto.create(usuario_id: params[:usuario_id].to_i, projeto_id: params[:projeto_id].to_i)
+        @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: params[:projeto_id]).pluck(:usuario_id))
+        @projeto = Projeto.find_by_id(params[:projeto_id])
     end
 
 end
