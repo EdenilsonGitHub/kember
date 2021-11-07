@@ -1,0 +1,39 @@
+<div style="width: 35%; height: 80px"></div>
+<div style="display: inline-block; width: 100%">
+    <div style="display: inline-block; width: 80%">
+        <h3 style="margin-top: 10px; padding-left: 75px">Lista de prioridades</h3>
+    </div>
+    <div style="display: inline-block; width: 18%; text-align: right; padding-right: 10px">
+        <h3 onclick="$('.div_lateral').hide();" class="close_div_lateral">X</h3>
+    </div>
+</div>
+<table style="background-color: white; width: 100%; margin: 0 auto;" class="table">
+    <thead>
+        <tr>
+            
+        </tr>
+    </thead>
+    <tbody>
+        <% if @quadros.any? %>
+            <% @quadros.each do |quadro| %>
+                <tr>
+                    <td scope="row" style="text-align: left; padding: 15px">
+                        <%= quadro.nome %>
+                    </td>
+                    <td scope="row" style="width: 50px; height: 50px; background-color: #191919; color: white; padding: 15px">
+                        <%= quadro.pontuacao %>
+                    </td>
+                    <td scope="row" style="width: 100px; padding: 15px; height: 50px; background-color: <%= quadro.status.cor_fundo %>; color: <%= quadro.status.cor_fonte %>">
+                        <%= quadro.status.nome %>
+                    </td>
+                </tr>
+            <% end %>
+        <% else %>
+            <tr>
+                <td scope="row" style="text-align: left; color: red; padding: 15px">
+                    Sem registros
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

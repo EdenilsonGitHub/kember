@@ -6,6 +6,9 @@
         <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #9525E3; border: 1px solid #9525E3;font-weight: bold;">
             <%= @sprint.nome %>
         </div>
+        <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #257df0; border: 1px solid #257df0;font-weight: bold;">
+            <%= link_to 'Lista de prioridades', lista_prioridades_path(sprint_id: @sprint.id), class: 'lista_prioridades', remote: true %>
+        </div>
     </div>
     <div class="atualiza_sprint">
         <%= render('sprint') %>

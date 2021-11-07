@@ -66,3 +66,14 @@
     text-decoration: none;
     font-weight: bold;
 }
+
+.lista_prioridades {
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.lista_prioridades:hover,
+.lista_prioridades:visited,
+.lista_prioridades:link {
+    text-decoration: none;
+}
