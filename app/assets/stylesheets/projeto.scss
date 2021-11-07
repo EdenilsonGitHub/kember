@@ -78,10 +78,33 @@
     text-decoration: none;
 }
 
+.next {
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    padding: 4px 30px 4px 30px;
+    display: inline-block;
+    border-radius: 20px;
+    float: left;
+    margin-left: 5px;
+    font-size: 25px;
+    background-color: #257df0;
+}
+
+.next:hover {
+    color: white;
+    background-color: #2063b9;
+}
+
+.next:visited,
+.next:link {
+    text-decoration: none;
+}
+
 .div-adicionar-usr {
     height: 41px;
     width: 20px;
-    background-color: #6ca3ec;
+    background-color: #9525E3;
     display: inline-block;
     margin-top: 0px;
     border-top-left-radius: 25px;
@@ -94,7 +117,7 @@
 .div-adicionar-usr:visited,
 .div-adicionar-usr:link {
     text-decoration: none;
-    background-color: #257df0;
+    background-color: #6c1ba5;
 }
 
 .adicionar-usr {
