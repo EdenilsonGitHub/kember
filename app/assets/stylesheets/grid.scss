@@ -11,6 +11,8 @@
 .item1 {
     grid-column-start: 1;
     grid-column-end: 5;
+    grid-row-start: 1;
+    grid-row-end: 3;
     text-align: justify;
 }
 
@@ -33,6 +35,11 @@
 }
 
 .item5 {
+    grid-column-start: 5;
+    grid-column-end: 5;
+}
+
+.item6 {
     grid-column-start: 5;
     grid-column-end: 5;
 }
