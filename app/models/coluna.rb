@@ -7,6 +7,7 @@ class Coluna < ActiveRecord::Base
     
     belongs_to :empresa
     belongs_to :projeto
+    belongs_to :status
 
     has_many :quadros
 
