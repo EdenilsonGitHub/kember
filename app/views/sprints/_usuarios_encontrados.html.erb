@@ -1,0 +1,41 @@
+<% if @usuarios.any? %>
+    <table style="background-color: white; width: 100%; margin: 0 auto;" class="table-bordered">
+        <thead>
+            <tr>
+                <th style="color: black">
+                    Nome
+                </th> 
+                <th style="color: black">
+                    Email
+                </th> 
+                <th>
+                </th> 
+            </tr>
+        </thead>
+        <tbody>
+            <% @usuarios.each do |usuario| %>
+                <tr>
+                    <td scope="row" style="text-align: left; padding: 15px; width: auto; <%= 'background-color: #191919; color: white!important' if usuario.nome == @parametro_nome_email %>; color: black">
+                        <%= usuario.nome %>
+                    </td>
+                    <td scope="row" style="width: auto; height: 50px; <%= 'background-color: #191919; color: white!important' if usuario.email == @parametro_nome_email %>; padding: 15px; color: black">
+                        <%= usuario.email %>
+                    </td>
+                    <td scope="row" style="width: 20px; padding: 15px; height: 50px;">
+                        <%= link_to '+', adicionar_usuario_path(usuario_id: usuario, projeto_id: @projeto.id), remote: true, class: 'adicionar_usuario_table' %>
+                    </td>
+                </tr>
+            <% end %>
+        </tbody>
+    </table>
+<% else %>
+    <table style="text-align: center; width: 100%;">
+        <tbody>
+            <tr>
+                <td scope="row" style="color: red; padding: 15px">
+                    Nenhum resultado encontrado!
+                </td>
+            </tr>
+        </tbody>
+    </table>
+<% end %>

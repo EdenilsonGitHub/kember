@@ -1,0 +1,10 @@
+<div class="div-adicionar-usr">
+    <%= link_to '+', adicionar_novo_usuario_path(projeto_id: @projeto.id), class: 'adicionar-usr', remote: true %>
+</div>
+<% @usuarios.each do |usr| %>
+    <div style="width: 40px; height: 40px; background-color: gray; border-radius: 25px; display: inline-block">
+        <% if Usuario.last.foto_file_size %>
+            <%= image_tag usr.foto.url(:normal), style: 'height: 40px; width: 40px; border-radius: 25px' %>
+        <% end %>
+    </div>
+<% end %>

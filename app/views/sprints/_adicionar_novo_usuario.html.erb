@@ -1,0 +1,19 @@
+<div style="width: 35%; height: 80px"></div>
+<div style="display: inline-block; width: 100%">
+    <div style="display: inline-block; width: 80%">
+        <h3 style="margin-top: 10px; padding-left: 75px">Adicionar novo usuário</h3>
+    </div>
+    <div style="display: inline-block; width: 18%; text-align: right; padding-right: 10px">
+        <h3 onclick="$('.div_lateral').hide();" class="close_div_lateral">X</h3>
+    </div>
+</div>
+<%= form_tag(buscar_usuario_path, style: 'margin-top: 20px', remote: true) do %>
+        <div class="form-group" style="width: 80%; margin: 0 auto; text-align: left">
+            <%= label_tag "Nome ou Email", nil, style: 'margin-left: 5px; margin-bottom: 0px' %>
+            <%= text_field_tag :nome_email, nil, class:'form-control input-lg', placeholder: "João da Silva ou joaodasilva@gmail.com" %>
+        </div>
+         <%= hidden_field_tag 'projeto_id', @projeto.id  %>
+        <%= submit_tag 'Buscar', class:'btn btn-primary', style: 'margin-top: 5px' %>
+<% end %>
+<div class="usuarios_encontrados" style="min-height: 40px; width: 95%; margin: 0 auto; color: white; margin-top: 10px">
+</div>

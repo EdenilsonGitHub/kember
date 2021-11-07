@@ -14,10 +14,13 @@ Rails.application.routes.draw do
   get  'login', to: 'usuarios#login', as: :login
   
   # Sprint
-  get  'mover_tarefa',      to: 'sprints#mover_tarefa',      as: :mover_tarefa
-  get  'atualiza_quadro',   to: 'sprints#atualiza_quadro',   as: :atualiza_quadro
-  get  'adicionar_quadro',  to: 'sprints#adicionar_quadro',  as: :adicionar_quadro
-  get  'lista_prioridades', to: 'sprints#lista_prioridades', as: :lista_prioridades
+  get  'mover_tarefa',           to: 'sprints#mover_tarefa',           as: :mover_tarefa
+  get  'atualiza_quadro',        to: 'sprints#atualiza_quadro',        as: :atualiza_quadro
+  get  'adicionar_quadro',       to: 'sprints#adicionar_quadro',       as: :adicionar_quadro
+  get  'lista_prioridades',      to: 'sprints#lista_prioridades',      as: :lista_prioridades
+  get  'adicionar_novo_usuario', to: 'sprints#adicionar_novo_usuario', as: :adicionar_novo_usuario
+  post 'buscar_usuario',         to: 'sprints#buscar_usuario',         as: :buscar_usuario
+  get  'adicionar_usuario',      to: 'sprints#adicionar_usuario',      as: :adicionar_usuario
   
   # Projeto
   get  'backlog', to: 'projetos#backlog', as: :backlog
