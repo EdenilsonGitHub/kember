@@ -8,4 +8,6 @@ class Status < ActiveRecord::Base
     belongs_to :empresa
     belongs_to :projeto
 
+    has_many :colunas
+
 end

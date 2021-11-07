@@ -41,7 +41,7 @@ class SprintsController < ApplicationController
 
     def lista_prioridades
         @sprint = Sprint.find_by_id(params[:sprint_id])
-        @quadros = @sprint.quadros.joins(:status).order('rank DESC, status.rank ASC')
+        @quadros = @sprint.quadros.joins(:status).where('status.finalizador = false').order('rank DESC, status.rank ASC')
     end
 
     def adicionar_novo_usuario
