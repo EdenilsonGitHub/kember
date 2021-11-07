@@ -23,7 +23,12 @@
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: white; color: black; border: none;"></button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <%= link_to("Mover", mover_tarefa_path(quadro: quad.id, coluna_atual:col.id, projeto: @projeto.id, sprint: @sprint.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'dropdown-item'}) %>
+                                        <%= link_to("Mover", mover_tarefa_path(quadro: quad.id, coluna_atual: col.id, projeto: @projeto.id, sprint: @sprint.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'dropdown-item'}) %>
+                                        <% if quad.usuario == @usuario_logado %>
+                                            <%= link_to("Deixar tarefa", deixar_tarefa_path(quadro_id: quad.id, projeto: @projeto.id, sprint: @sprint.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'dropdown-item'}) %>
+                                        <% else %>
+                                            <%= link_to("Assumir tarefa", assumir_tarefa_path(quadro_id: quad.id, usuario_id: @usuario_logado.id, projeto: @projeto.id, sprint: @sprint.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', class: 'dropdown-item'}) %>
+                                        <% end %>
                                     </div>
                                 </div>
                             </div>
@@ -35,7 +40,11 @@
                             <div class="item6" style="text-align: center"><i class="fa fa-<%= @icon %>" style="<%= 'color: red' if quad.rank.in?([1, 5]) %>"><%= '-' if quad.rank == 3 %></i></div>
                             <div class="item3" style="background-color: #191919; color: white; border-radius: 25px; text-align: center; max-width: 30px; height: 30px; padding-top: 4px; margin-top: 2px"><%= quad.pontuacao %></div>
                             <div class="item4" style="background-color: <%= quad.status.cor_fundo %>; color: <%= quad.status.cor_fonte %>; border: 1px solid <%= quad.status.cor_fonte %>; border-radius: 15px; text-align: center; font-size: 15px"><%= @projeto.sigla %>-<%= quad.id %></div>
-                            <div class="item5" style="width: 30px; height: 30px; background-color: lightgray; border-radius: 25px; margin-top:2px"></div>
+                            <div class="item5" style="width: 30px; height: 30px; background-color: lightgray; border-radius: 25px; margin-top:2px; padding: 0px 0px">
+                                <% if quad.usuario %>
+                                    <%= image_tag quad.usuario.foto.url(:normal), style: 'height: 30px; width: 30px; border-radius: 25px' %>
+                                <% end %>
+                            </div>
                         </div>
                     </div>
                 <% end %>
