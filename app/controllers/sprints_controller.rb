@@ -48,7 +48,7 @@ class SprintsController < ApplicationController
 
     def lista_prioridades
         @sprint = Sprint.find_by_id(params[:sprint_id])
-        @quadros = @sprint.quadros.joins(:status).where('status.finalizador = false').order('rank DESC, status.rank ASC')
+        @quadros = @sprint.quadros.joins(:status).where('status.finalizador = false AND status.lista = true AND status.lista = true').order('rank DESC, status.rank ASC')
     end
 
     def adicionar_novo_usuario
@@ -101,7 +101,13 @@ class SprintsController < ApplicationController
         @sprint = Sprint.find_by_id(params[:sprint_id])
         @projeto = @sprint.projeto
         @colunas = @projeto.colunas
-        @quadro = @sprint.quadros.joins(:status).where('status.finalizador = false').order('rank DESC, status.rank ASC').first
+        @quadros_antigos = @sprint.quadros.joins(:status).where('status.lista = false AND usuario_id = (?)', @usuario_logado.id)
+        @quadros_antigos.each do |quad|
+            @proximo_status_temp = @projeto.status.where('rank > (?)', quad.status.rank).order('rank').first    
+            @proxima_coluna_temp = Coluna.where(status_id: @proximo_status_temp.id).first
+            quad.update(usuario_id: @usuario_logado.id, status_id: @proximo_status_temp.id, coluna_id: @proxima_coluna_temp.id)
+        end
+        @quadro = @sprint.quadros.joins(:status).where('status.finalizador = false AND status.lista = true').order('rank DESC, status.rank ASC').first
         @proximo_status = @projeto.status.where('rank > (?)', @quadro.status.rank).order('rank').first
         @proxima_coluna = Coluna.where(status_id: @proximo_status.id).first
         @quadro.update(usuario_id: @usuario_logado.id, status_id: @proximo_status.id, coluna_id: @proxima_coluna.id)
