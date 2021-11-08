@@ -37,8 +37,8 @@
             </td>
         </tr>
     </table>
-    <%= u.hidden_field :usuario_id, value: @usuario_logado.id %>
-    <%= u.hidden_field :status_id, value: Status.first.id %>
+    <%= hidden_field_tag :usuario_id, @usuario_logado.id %>
+    <%= u.hidden_field :status_id, value: @coluna.status.id %>
     <%= u.hidden_field :coluna_id, value: @coluna.id %>
     <%= u.hidden_field :sprint_id, value: @sprint.id %>
     <%= hidden_field_tag :projeto_id, @coluna.projeto.id %>

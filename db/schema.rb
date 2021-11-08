@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_07_203804) do
+ActiveRecord::Schema.define(version: 2021_11_07_225104) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 2021_11_07_203804) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "sprint_id"
     t.integer "rank", default: 3
+    t.datetime "baixada_dia"
   end
 
   create_table "sprints", force: :cascade do |t|
