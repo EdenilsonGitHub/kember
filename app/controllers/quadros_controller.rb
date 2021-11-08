@@ -11,9 +11,14 @@ class QuadrosController < ApplicationController
             @hash_quadros[col] = {}
             @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
         end
+        @quadro.usuario_id = params[:usuario_id] if @quadro.coluna.status.finalizador
         if @quadro.save
         else
-            render action: 'new'
+            if @quadro.errors.count == 1 && @quadro.errors.inspect.include?("attribute=usuario")
+                @quadro.save(validate: false)
+            else
+                render action: 'new'
+            end
         end
     end
 

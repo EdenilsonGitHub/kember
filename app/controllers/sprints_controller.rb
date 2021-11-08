@@ -28,7 +28,15 @@ class SprintsController < ApplicationController
         @colunas = Coluna.where(id: params[:colunas])
         @quadro = Quadro.find_by_id(params[:quadro])
         @coluna_selecionada = Coluna.find_by_id(params[:coluna_selecionada])
-        @quadro.update(coluna_id: params[:coluna_selecionada], status_id: @coluna_selecionada.status.id)
+        @quadro.coluna_id = @coluna_selecionada.id
+        @quadro.status_id = @coluna_selecionada.status.id
+        @quadro.baixado_dia = Time.now if @coluna_selecionada.status.finalizador
+        if @quadro.save
+        else
+            if @quadro.errors.count == 1 && @quadro.errors.inspect.include?("attribute=usuario")
+                @quadro.save(validate: false)
+            end
+        end
         carrega_quadros()
     end
 
