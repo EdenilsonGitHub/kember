@@ -1,0 +1,44 @@
+<%= form_for @sprint, class: 'form-quadro' do |u| %>
+    <div class="erros_sprint">
+        <%= render('erro_sprint') %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Nome", class: 'label-form' %>
+        <%= u.text_field :nome, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Descrição", class: 'label-form' %>
+        <%= u.text_area :descricao, class: 'form-control valor-form', rows: 5 %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Inicio sprint", class: 'label-form' %>
+        <%= u.datetime_field :inicio_sprint, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Fim sprint", class: 'label-form' %>
+        <%= u.datetime_field :fim_sprint, class: 'form-control valor-form' %>
+    </div>
+    <table style="width: 100%; height: auto">
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Burndown" %>
+            </td>
+            <td>
+                <%= u.check_box :burndown, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Tornar como sprint atual" %>
+            </td>
+            <td>
+                <%= u.check_box :sprint_atual, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+    </table>
+    <%= u.hidden_field :projeto_id, value: params[:projeto_id] %>
+    <div style="width: 100%; text-align: center">
+        <%= button_tag 'Cancelar', type: 'button', class: 'btn btn-danger', onclick: "$('.div_lateral').hide()" %>
+        <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
+    </div>
+<% end %>
