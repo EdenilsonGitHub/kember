@@ -6,4 +6,6 @@ class Perfil < ActiveRecord::Base
     
     belongs_to :empresa
 
+    has_many :usuarios
+
 end 
