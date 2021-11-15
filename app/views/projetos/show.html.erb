@@ -11,18 +11,19 @@
         <table style="background-color: white; width: 90%; margin: 0 auto;">
             <thead>
                 <tr>
-                    <th colspan="1" style="font-size: 25px">Sprints</th>
+                    <th colspan="1" style="font-size: 25px; width: 53.8%; text-align: right;">Sprints</th>
+                    <th colspan="1" style="font-size: 25px"><%= link_to 'Nova sprint', new_sprint_path(projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %></th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td style="padding: 15px 40px 15px 40px">
+                    <td colspan="2" style="padding: 15px 40px 15px 40px">
                         <%= link_to "Backlog", backlog_path(projeto_id: @projeto.id), class: "botoes-backlog" %>
                     </td>
                 </tr>
                 <% @sprints.each do |sprint| %>
                     <tr>
-                        <td style="padding: 15px 40px 15px 40px">
+                        <td colspan="2" style="padding: 15px 40px 15px 40px">
                             <%= link_to sprint.nome, sprint_path(id: sprint.id), class: "#{sprint.sprint_atual ? 'botoes-projetos-atual' : 'botoes-projetos'}" %>
                         <td>
                     <tr>

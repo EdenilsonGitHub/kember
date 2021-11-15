@@ -8,6 +8,23 @@ class SprintsController < ApplicationController
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
     end
 
+    def new
+        @sprint = Sprint.new
+    end
+
+    def create
+        if params[:sprint][:sprint_atual] == "1"
+            @projeto = Projeto.find_by_id(params[:sprint][:projeto_id])
+            @projeto.sprints.update_all(sprint_atual: false)
+        end
+        @sprint = Sprint.new(params.require(:sprint).permit(:nome, :descricao, :inicio_sprint, :fim_sprint, :burndown, :sprint_atual, :projeto_id))
+        if @sprint.save
+            redirect_to projeto_path(id: @sprint.projeto.id)
+        else
+            render action: 'new'
+        end
+    end
+
     def mover_tarefa
         @sprint = Sprint.find_by_id(params[:sprint])
         @projeto = Projeto.find_by_id(params[:projeto])

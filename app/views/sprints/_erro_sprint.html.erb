@@ -1,0 +1,11 @@
+<% if @sprint.errors.any? %>
+    <div class="fundo_erro">
+        <h5 class="text-center" style="padding-top: 5px">Revise as informações abaixo: </h5>
+        <p> </p>
+        <ul>
+            <% @sprint.errors.full_messages.each do |msg| %>
+                <li><%= msg.humanize %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
