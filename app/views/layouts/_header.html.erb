@@ -7,8 +7,17 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %><span class="sr-only">(current)</span>
+                <li class="nav-item <%= 'active' if @aba_selecionada == "inicio" %>">
+                    <%= link_to 'Inicio', home_index_path(), class: 'nav-link' %>
+                    <% if @aba_selecionada == "inicio" %>
+                        <span class="sr-only">(current)</span>
+                    <% end %>
+                </li>
+                <li class="nav-item <%= 'active' if @aba_selecionada == "projeto" %>">
+                    <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %>
+                    <% if @aba_selecionada == "projeto" %>
+                        <span class="sr-only">(current)</span>
+                    <% end %>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Sobre</a>

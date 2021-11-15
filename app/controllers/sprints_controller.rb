@@ -6,6 +6,7 @@ class SprintsController < ApplicationController
         @colunas = @projeto.colunas
         carrega_quadros()
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
+        @aba_selecionada == "projeto"
     end
 
     def mover_tarefa
@@ -20,6 +21,7 @@ class SprintsController < ApplicationController
             format.html
             format.js
         end
+        @aba_selecionada == "projeto"
     end
 
     def atualiza_quadro
@@ -38,21 +40,25 @@ class SprintsController < ApplicationController
             end
         end
         carrega_quadros()
+        @aba_selecionada == "projeto"
     end
 
     def adicionar_quadro
         @coluna = Coluna.find_by_id(params[:coluna])
         @quadro = Quadro.new
         @sprint = Sprint.find_by_id(params[:sprint])
+        @aba_selecionada == "projeto"
     end
 
     def lista_prioridades
         @sprint = Sprint.find_by_id(params[:sprint_id])
         @quadros = @sprint.quadros.joins(:status).where('status.finalizador = false AND status.lista = true AND status.lista = true').order('rank DESC, status.rank ASC')
+        @aba_selecionada == "projeto"
     end
 
     def adicionar_novo_usuario
         @projeto = Projeto.find_by_id(params[:projeto_id])
+        @aba_selecionada == "projeto"
     end
 
     def buscar_usuario
@@ -61,12 +67,14 @@ class SprintsController < ApplicationController
         @usuarios = @usuarios.reject{|usr| usr.in?(@usuarios_projeto) }
         @parametro_nome_email = params[:nome_email]
         @projeto = Projeto.find_by_id(params[:projeto_id])
+        @aba_selecionada == "projeto"
     end
 
     def adicionar_usuario
         UsuarioProjeto.create(usuario_id: params[:usuario_id].to_i, projeto_id: params[:projeto_id].to_i)
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: params[:projeto_id]).pluck(:usuario_id))
         @projeto = Projeto.find_by_id(params[:projeto_id])
+        @aba_selecionada == "projeto"
     end
 
     def assumir_tarefa
@@ -76,6 +84,7 @@ class SprintsController < ApplicationController
         @colunas = @projeto.colunas
         @sprint = Sprint.find_by_id(params[:sprint])
         carrega_quadros()
+        @aba_selecionada == "projeto"
     end
 
     def deixar_tarefa
@@ -86,6 +95,7 @@ class SprintsController < ApplicationController
         @colunas = @projeto.colunas
         @sprint = Sprint.find_by_id(params[:sprint])
         carrega_quadros()
+        @aba_selecionada == "projeto"
     end
 
     def carrega_quadros
@@ -95,6 +105,7 @@ class SprintsController < ApplicationController
             @hash_quadros[col] = {}
             @hash_quadros[col] = @colunas.find_by_id(col).quadros.where(sprint_id: @sprint.id)
         end
+        @aba_selecionada == "projeto"
     end
 
     def next_prioridade
@@ -112,6 +123,7 @@ class SprintsController < ApplicationController
         @proxima_coluna = Coluna.where(status_id: @proximo_status.id).first
         @quadro.update(usuario_id: @usuario_logado.id, status_id: @proximo_status.id, coluna_id: @proxima_coluna.id)
         carrega_quadros()
+        @aba_selecionada == "projeto"
     end
 
 end
