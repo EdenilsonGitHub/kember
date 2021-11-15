@@ -25,7 +25,7 @@
     <%= u.hidden_field :empresa_id, value: 1 %>
     <%= hidden_field_tag :usuario_id, @usuario_logado.id %>
     <div style="width: 100%; text-align: center">
-        <%= button_tag 'Cancelar', type: 'button', class: 'btn btn-danger', onclick: "$('.div_lateral').hide()" %>
+        <%= link_to 'Cancelar', projetos_path, class: 'btn btn-danger' %>
         <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
     </div>
 <% end %>

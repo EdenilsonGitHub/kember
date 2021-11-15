@@ -1,5 +1,10 @@
-<div class="div-titulo">
-    Status
+<div class="div-titulo" style="margin-bottom: 10px">
+    <div style="font-size: 25px; width: 40%; text-align: right; display: inline-block">
+        Status
+    </div>
+    <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
+        <%= link_to 'Novo status', new_status_path(usuario: @usuario_logado.id, projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    </div>
 </div>
 <table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @status.any? ? 'table-bordered' : '' %>">
     <% if @status.any? %>
