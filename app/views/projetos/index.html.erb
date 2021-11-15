@@ -2,13 +2,14 @@
     <table style="background-color: white; width: 90%; margin: 0 auto;">
         <thead>
             <tr>
-                <th colspan="1" style="font-size: 25px">Projetos</th>
+                <th colspan="1" style="font-size: 25px; width: 54.5%; text-align: right;">Projetos</th>
+                <th colspan="1" style="font-size: 25px"><%= link_to 'Novo projeto', new_projeto_path(usuario: @usuario_logado.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %></th>
             </tr>
         </thead>
         <tbody>
             <% @projetos.each do |proj| %>
                 <tr>
-                    <td style="padding: 15px 40px 15px 40px">
+                    <td colspan="2" style="padding: 15px 40px 15px 40px">
                         <%= link_to proj.nome, projeto_path(id: proj.id), class: 'botoes-projetos' %>
                     <td>
                 <tr>
