@@ -7,4 +7,6 @@ class Funcionalidade < ActiveRecord::Base
     
     belongs_to :empresa
 
+    has_many :perfil_funcionalidades
+
 end 
