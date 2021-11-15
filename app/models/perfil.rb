@@ -6,6 +6,7 @@ class Perfil < ActiveRecord::Base
     
     belongs_to :empresa
 
+    has_many :perfil_funcionalidades
     has_many :usuarios
 
 end 
