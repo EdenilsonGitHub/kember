@@ -21,6 +21,7 @@ class Usuario < ActiveRecord::Base
     belongs_to :perfil
 
     has_many :quadros
+    has_many :usuario_empresas
 
     def validou(senha)
         senha = Digest::SHA256.hexdigest senha
