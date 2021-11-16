@@ -1,0 +1,47 @@
+<%= form_for @empresa, class: 'form-quadro' do |u| %>
+    <div class="erros_projeto">
+        <%= render('erro') %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Nome", class: 'label-form' %>
+        <%= u.text_field :nome, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Nome fantasia", class: 'label-form' %>
+        <%= u.text_field :nome_fantasia, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Sigla", class: 'label-form' %>
+        <%= u.text_field :sigla, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "CNPJ", class: 'label-form' %>
+        <%= u.text_field :cnpj, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Telefone", class: 'label-form' %>
+        <%= u.text_field :telefone, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Email", class: 'label-form' %>
+        <%= u.text_field :email, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Logo", class: 'label-form' %>
+        <%= u.file_field :logo, class: 'form-control', style: 'padding-bottom: 36px' %>    
+    </div>
+    <table style="width: 100%; height: auto">
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Ativo" %>
+            </td>
+            <td>
+                <%= u.check_box :ativo, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+    </table>
+    <div style="width: 100%; text-align: center">
+        <%= link_to 'Cancelar', perfils_path(empresa_id: 1), class: 'btn btn-danger' %>
+        <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
+    </div>
+<% end %>
