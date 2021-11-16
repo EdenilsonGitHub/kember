@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :perfils
   resources :funcionalidades
   resources :empresas
+  resources :colunas
 
   # Home
   get 'gerenciamento', to: 'home#gerenciamento', as: :gerenciamento
