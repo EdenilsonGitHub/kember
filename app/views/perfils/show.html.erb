@@ -1,0 +1,76 @@
+<div style="margin-top: 20px; text-align: center; margin-bottom: 150px">
+    <div style="width: 100%; height: 300px; display: inline-block; margin: 0 auto">
+        <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: #9525E3; color: white; font-weight: bold;">
+            <%= @perfil.nome %>
+        </div>
+    <div>
+    <div style="margin-top: 30px; text-align: center; margin-bottom: 150px; height: 500px">
+        <div style="width: 100%; height: 40px"></div>
+        <div style="width: 100%; display: inline-block; margin-bottom: 10px">
+            <div style="width: 49%; display: inline-block; text-align: right; vertical-align: text-top">
+                <h3>Funcionalidades</h3>
+            </div>
+            <div style="width: 30%; display: inline-block; text-align: right; vertical-align: unset">
+                <%= link_to 'Adicionar funcionalidade', adicionar_funcionalidade_path(perfil_id: @perfil.id, empresa_id: 1), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+            </div>
+        </div>
+        <table style="background-color: white; width: 80%; margin: 0 auto; margin-top: 30" class="<%= @funcionalidades.any? ? 'table-bordered' : '' %>">
+            <% if @funcionalidades.any? %>
+                <thead>
+                    <tr>
+                        <th style="padding: 5px; text-align: center">
+                            Identificador
+                        </th>
+                        <th style="padding: 5px; padding-left: 15px">
+                            Nome
+                        </th>
+                        <th style="padding: 5px; text-align: center">
+                            Descrição
+                        </th>
+                        <th style="padding: 5px; text-align: center">
+                            Incluir
+                        </th>
+                        <th style="padding: 5px; text-align: center">
+                            Alterar
+                        </th>
+                        <th style="padding: 5px; text-align: center">
+                            Excluir
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% @funcionalidades.each do |func| %>
+                            <tr>
+                                <td scope="row" style="width: 20px; text-align: left; padding: 15px">
+                                    <%= func.sys_id %>
+                                </td>
+                                <td scope="row" style="min-width: 20px; padding: 15px; height: 20px; text-align: center">
+                                    <%= func.nome %>
+                                </td>
+                                <td scope="row" style="min-width: 20px; padding: 15px; height: 50px; text-align: center">
+                                    <%= func.descricao %>
+                                </td>
+                                <td scope="row" style="width: 20px; padding: 15px; height: 50px; text-align: center">
+                                    <%= func.incluir ? 'Sim' : 'Não' %>
+                                </td>
+                                <td scope="row" style="width: 20px; padding: 15px; height: 50px; text-align: center">
+                                    <%= func.alterar ? 'Sim' : 'Não' %>
+                                </td>
+                                <td scope="row" style="width: 20px; padding: 15px; height: 50px; text-align: center">
+                                    <%= func.excluir ? 'Sim' : 'Não' %>
+                                </td>
+                            </tr>
+                        <% end %>
+                </tbody>
+            <% else %>
+                <tbody>
+                    <tr>
+                        <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                            Sem registros
+                        </td>
+                    </tr>
+                </tbody>
+            <% end %>
+        </table>
+    </div>
+</div>

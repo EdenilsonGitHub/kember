@@ -3,8 +3,11 @@
         <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: #9525E3; color: white; font-weight: bold;">
             <%= @projeto.nome %>
         </div>
-        <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+        <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
             <%= link_to "Status", statuses_path(projeto_id: @projeto.id), class: 'lista_prioridades' %>
+        </div>
+        <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+            <%= link_to 'Gerenciamento', gerenciamento_path(empresa_id: 1), class: 'lista_prioridades' %>
         </div>
     <div>
     <div style="margin-top: 30px; text-align: center; margin-bottom: 150px; height: 500px">

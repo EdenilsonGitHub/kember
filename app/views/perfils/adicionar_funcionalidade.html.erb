@@ -1,0 +1,17 @@
+<div style="width: 80%; margin: 0 auto; margin-top: 40px">
+    <div style="width: 100%; text-align: center; margin-top: 25px; font-size: 25px">
+        <span style="margin: 0 auto; width: 100%">Criação de perfil</span>
+    </div>
+    <%= form_tag(adicionar_funcionalidade_perfil_path, style: 'margin-top: 20px') do %>
+        <div class="form-group" style="width: 80%; margin: 0 auto; text-align: left">
+            <%= label_tag "Funcionalidade", nil, style: 'margin-left: 5px; margin-bottom: 0px' %>
+            <%= select_tag :funcionalidade, options_from_collection_for_select(@funcionalidades, "id", "nome"), prompt: "Selecione", class:'form-control input-lg' %>
+        </div>
+        <%= hidden_field_tag :perfil_id, @perfil.id  %>
+        <div style="width: 100%; text-align: center; margin-top: 30px">
+            <%= link_to 'Cancelar', perfils_path(empresa_id: 1), class: 'btn btn-danger' %>
+            <%= submit_tag 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
+        </div>
+    <% end %>
+    <div style="height: 40px; width: 100%"></div>
+</div>
