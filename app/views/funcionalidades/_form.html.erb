@@ -1,0 +1,52 @@
+<%= form_for @funcionalidade, class: 'form-quadro' do |u| %>
+    <div class="erros_projeto">
+        <%= render('erro') %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Nome", class: 'label-form' %>
+        <%= u.text_field :nome, class: 'form-control valor-form' %>
+    </div>
+    <div class="form-group label-valor">
+        <%= u.label "Descrição", class: 'label-form' %>
+        <%= u.text_area :descricao, class: 'form-control valor-form', rows: 5 %>
+    </div>
+    <table style="width: 100%; height: auto">
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Identificador único", style: 'vertical-align: sub' %>
+            </td>
+            <td>
+                <%= u.number_field :sys_id, style: 'height: 25px; width: 80px' %>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Incluir" %>
+            </td>
+            <td>
+                <%= u.check_box :incluir, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Alterar" %>
+            </td>
+            <td>
+                <%= u.check_box :alterar, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; text-align: right">
+                <%= u.label "Exluir" %>
+            </td>
+            <td>
+                <%= u.check_box :excluir, style: 'width: 20px; height: 20px' %>
+            </td>
+        </tr>
+    </table>
+    <%= u.hidden_field :empresa_id, value: 1 %>
+    <div style="width: 100%; text-align: center">
+        <%= link_to 'Cancelar', funcionalidades_path(empresa_id: 1), class: 'btn btn-danger' %>
+        <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
+    </div>
+<% end %>

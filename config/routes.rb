@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   resources :sprints
   resources :quadros
   resources :statuses
+  resources :perfils
+  resources :funcionalidades
+
+  # Home
+  get 'gerenciamento', to: 'home#gerenciamento', as: :gerenciamento
 
   # Application
   get 'sair', to: 'application#sair', as: :sair
@@ -24,6 +29,10 @@ Rails.application.routes.draw do
   get  'assumir_tarefa',         to: 'sprints#assumir_tarefa',         as: :assumir_tarefa
   get  'deixar_tarefa',          to: 'sprints#deixar_tarefa',          as: :deixar_tarefa
   get  'next_prioridade',        to: 'sprints#next_prioridade',        as: :next_prioridade
+  
+  # Perfil
+  get  'adicionar_funcionalidade',        to: 'perfils#adicionar_funcionalidade',        as: :adicionar_funcionalidade
+  post 'adicionar_funcionalidade_perfil', to: 'perfils#adicionar_funcionalidade_perfil', as: :adicionar_funcionalidade_perfil
 
   # Projeto
   get  'backlog', to: 'projetos#backlog', as: :backlog
