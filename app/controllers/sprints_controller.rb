@@ -131,4 +131,9 @@ class SprintsController < ApplicationController
         carrega_quadros()
     end
 
+    def burndown
+        @sprint = Sprint.find_by_id(params[:sprint_id])
+        @quadros = @sprint.quadros
+    end
+
 end

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   get  'assumir_tarefa',         to: 'sprints#assumir_tarefa',         as: :assumir_tarefa
   get  'deixar_tarefa',          to: 'sprints#deixar_tarefa',          as: :deixar_tarefa
   get  'next_prioridade',        to: 'sprints#next_prioridade',        as: :next_prioridade
+  get  'burndown',               to: 'sprints#burndown',               as: :burndown
   
   # Perfil
   get  'adicionar_funcionalidade',        to: 'perfils#adicionar_funcionalidade',        as: :adicionar_funcionalidade
