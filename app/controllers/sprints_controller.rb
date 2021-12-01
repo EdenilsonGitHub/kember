@@ -47,7 +47,7 @@ class SprintsController < ApplicationController
         @coluna_selecionada = Coluna.find_by_id(params[:coluna_selecionada])
         @quadro.coluna_id = @coluna_selecionada.id
         @quadro.status_id = @coluna_selecionada.status.id
-        @quadro.baixado_dia = Time.now if @coluna_selecionada.status.finalizador
+        @quadro.baixada_dia = DateTime.now if @coluna_selecionada.status.finalizador
         if @quadro.save
         else
             if @quadro.errors.count == 1 && @quadro.errors.inspect.include?("attribute=usuario")

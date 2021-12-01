@@ -1,7 +1,7 @@
 <div class="sprint" style="width: 100%; height: 460px; text-align: left; display: inline-block">
-    <% @left = 15 %>
+    <% @left = 0 %>
     <% @colunas.each do |col| %>
-        <div style="height: 470px; width: 200px; display: inline-block; margin-left: 15px; position: absolute; left: <%= @left %>px">
+        <div style="height: 465px; width: 200px; display: inline-block; margin-left: 15px; position: absolute; left: <%= @left %>px">
             <% begin %>
                 <%= link_to('Selecione', atualiza_quadro_path(quadro: @quadro.id, coluna_selecionada: col.id, colunas: @colunas.pluck(:id), projeto: @projeto.id, sprint: @sprint.id), class: "att_quadro", remote: true) %>
             <% rescue %>

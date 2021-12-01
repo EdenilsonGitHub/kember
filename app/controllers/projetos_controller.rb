@@ -1,6 +1,10 @@
 class ProjetosController < ApplicationController
 
     def index
+        unless @usuario_logado
+            redirect_to home_index_path 
+            return
+        end
         @projetos = Projeto.where(id: UsuarioProjeto.where(usuario_id: @usuario_logado.id).pluck(:projeto_id))
     end
 
@@ -17,6 +21,11 @@ class ProjetosController < ApplicationController
         else
             render action: 'new'
         end
+    end
+
+    def destroy
+        Projeto.find_by_id(params[:id]).destroy
+        redirect_to projetos_path
     end
 
     def show
