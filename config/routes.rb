@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   # Home
   get 'gerenciamento', to: 'home#gerenciamento', as: :gerenciamento
+  get 'em_breve',      to: 'home#em_breve',      as: :em_breve
 
   # Application
   get 'sair', to: 'application#sair', as: :sair
