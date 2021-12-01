@@ -7,20 +7,25 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %><span class="sr-only">(current)</span>
+                <li class="nav-item <%= 'active' if @aba_selecionada == 'inicio' %>">
+                    <%= link_to 'Inicio', home_index_path(), class: 'nav-link' %>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Sobre</a>
+                <% if @usuario_logado %>
+                    <li class="nav-item <%= 'active' if @aba_selecionada == 'projetos' %>">
+                        <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %>
+                    </li>
+                <% end %>
+                <li class="nav-item <%= 'active' if @aba_selecionada == 'sobre' %>">
+                    <%= link_to 'Sobre', em_breve_path(selecionada: 'sobre'), class: 'nav-link' %>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Serviços</a>
+                <li class="nav-item <%= 'active' if @aba_selecionada == 'servicos' %>">
+                    <%= link_to 'Serviços', em_breve_path(selecionada: 'servicos'), class: 'nav-link' %>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Preços</a>
+                <li class="nav-item <%= 'active' if @aba_selecionada == 'precos' %>">
+                    <%= link_to 'Preços', em_breve_path(selecionada: 'precos'), class: 'nav-link' %>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Suporte</a>
+                <li class="nav-item <%= 'active' if @aba_selecionada == 'suporte' %>">
+                    <%= link_to 'Suporte', em_breve_path(selecionada: 'suporte'), class: 'nav-link' %>
                 </li>
                 <% if cookies[:id].blank? %>
                     <li class="nav-item">
