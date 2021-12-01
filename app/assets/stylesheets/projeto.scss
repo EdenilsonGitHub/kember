@@ -78,9 +78,21 @@
     color: rgb(255, 45, 45);
 }
 
+.editar {
+    font-weight: bold;
+    text-decoration: none;
+    color: #131213;
+}
+
 .excluir:visited,
 .excluir:link {
     color: rgb(255, 45, 45);
+    text-decoration: none;
+}
+
+.editar:visited,
+.editar:link {
+    color: #131213;
     text-decoration: none;
 }
 
@@ -89,23 +101,39 @@
     background-color: rgb(255, 45, 45);
 }
 
+.editar:hover {
+    color: white;
+    background-color: #131213;
+}
+
 .lista_prioridades:hover,
 .lista_prioridades:visited,
 .lista_prioridades:link {
     text-decoration: none;
 }
 
-.next {
+.next,
+.editar_config {
     font-weight: bold;
     text-decoration: none;
-    color: white;
-    padding: 4px 30px 4px 30px;
     display: inline-block;
     border-radius: 20px;
     float: left;
     margin-left: 5px;
-    font-size: 25px;
+}
+
+.editar_config {
+    padding: 3px 20px 3px 5px;
+    color: #494749;
+    background-color: white;
+    font-size: 35px;
+}
+
+.next {
+    padding: 4px 30px 4px 30px;
+    color: white;
     background-color: #257df0;
+    font-size: 25px;
 }
 
 .next:hover {
@@ -113,8 +141,17 @@
     background-color: #2063b9;
 }
 
+.editar_config:hover {
+    color: #131213;
+}
+
 .next:visited,
 .next:link {
+    text-decoration: none;
+}
+
+.editar_config:visited,
+.editar_config:link {
     text-decoration: none;
 }
 
@@ -128,6 +165,7 @@
     border-bottom-left-radius: 25px;
     text-align: center;
     text-decoration: none;
+    vertical-align: top;
 }
 
 .div-adicionar-usr:hover,
