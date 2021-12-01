@@ -72,6 +72,23 @@
     text-decoration: none;
 }
 
+.excluir {
+    font-weight: bold;
+    text-decoration: none;
+    color: rgb(255, 45, 45);
+}
+
+.excluir:visited,
+.excluir:link {
+    color: rgb(255, 45, 45);
+    text-decoration: none;
+}
+
+.excluir:hover {
+    color: white;
+    background-color: rgb(255, 45, 45);
+}
+
 .lista_prioridades:hover,
 .lista_prioridades:visited,
 .lista_prioridades:link {
