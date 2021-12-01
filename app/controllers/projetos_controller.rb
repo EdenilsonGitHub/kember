@@ -12,6 +12,10 @@ class ProjetosController < ApplicationController
         @projeto = Projeto.new
     end
 
+    def edit
+        @projeto = Projeto.find_by_id(params[:id])
+    end
+
     def create
         @projeto = Projeto.new(params.require(:projeto).permit(:nome, :sigla, :descricao, :email, :inicio_projeto, :fim_projeto, :usuario_id, :empresa_id))
         if @projeto.save
@@ -20,6 +24,16 @@ class ProjetosController < ApplicationController
             redirect_to projetos_path
         else
             render action: 'new'
+        end
+    end
+
+    def update
+        @projeto = Projeto.find_by_id(params[:id])
+        if @projeto.update(params.require(:projeto).permit(:nome, :sigla, :descricao, :email, :inicio_projeto, :fim_projeto, :usuario_id, :empresa_id))
+            @sprints = @projeto.sprints
+            render 'show'
+        else
+            render 'edit'
         end
     end
 

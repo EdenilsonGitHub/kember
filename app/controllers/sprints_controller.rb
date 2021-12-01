@@ -8,6 +8,24 @@ class SprintsController < ApplicationController
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
     end
 
+    def edit
+        @sprint = Sprint.find_by_id(params[:id])
+        params[:projeto_id] = @sprint.projeto.id
+    end
+
+    def update
+        @sprint = Sprint.find_by_id(params[:id])
+        @projeto = @sprint.projeto
+        @usuarios = @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
+        @colunas = @projeto.colunas
+        carrega_quadros()
+        if @sprint.update(params.require(:sprint).permit(:nome, :descricao, :inicio_sprint, :fim_sprint, :burndown, :sprint_atual, :projeto_id))
+            render 'show'
+        else
+            render 'edit'
+        end
+    end
+
     def new
         @sprint = Sprint.new
     end
