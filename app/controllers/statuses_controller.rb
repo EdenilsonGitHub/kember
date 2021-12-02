@@ -9,6 +9,28 @@ class StatusesController < ApplicationController
         @status = Status.new
     end
 
+    def edit
+        @status = Status.find_by_id(params[:id])
+    end
+
+    def destroy
+        @status = Status.find_by_id(params[:id])
+        @projeto = @status.projeto
+        @status.destroy
+        @status = @projeto.status
+    end
+
+    def update
+        @status = Status.find_by_id(params[:id])
+        @projeto = @status.projeto
+        if @status.update(params.require(:status).permit(:nome, :cor_fundo, :cor_fonte, :rank, :finalizador, :lista, :empresa_id))
+            @status = @projeto.status.order('rank ASC')
+            render 'index'
+        else
+            render 'edit'
+        end
+    end
+
     def create
         @status = Status.new(params.require(:status).permit(:nome, :cor_fundo, :cor_fonte, :rank, :finalizador, :lista, :projeto_id, :empresa_id))
         if @status.save
