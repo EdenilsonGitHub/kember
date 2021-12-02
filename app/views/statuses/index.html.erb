@@ -19,22 +19,14 @@
                 <th style="padding: 5px; text-align: center">
                     Demonstração
                 </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
             </tr>
         </thead>
-        <tbody>
-                <% @status.each do |status| %>
-                    <tr>
-                        <td scope="row" style="text-align: left; padding: 15px">
-                            <%= status.nome %>
-                        </td>
-                        <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
-                            <%= status.rank %>
-                        </td>
-                        <td scope="row" style="width: 100px; padding: 15px; height: 50px; background-color: <%= status.cor_fundo %>; color: <%= status.cor_fonte %>; text-align: center">
-                            Texto
-                        </td>
-                    </tr>
-                <% end %>
+        <tbody class="tabela_status">
+            <%= render('tabela_status') %>
         </tbody>
     <% else %>
         <tbody>
