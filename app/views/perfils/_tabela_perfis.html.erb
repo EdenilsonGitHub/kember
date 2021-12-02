@@ -1,0 +1,16 @@
+<% @perfis.each do |perfil| %>
+    <tr>
+        <td scope="row" style="text-align: left; padding: 15px">
+            <%= link_to(perfil.nome, perfil_path(id: perfil.id)) %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= perfil.descricao %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('pen'), edit_perfil_path(id: perfil.id, empresa_id: perfil.empresa.id), class:'pencil') %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('trash'), perfil_path(id: perfil.id, empresa_id: perfil.empresa.id), method: :delete, data: { confirm: 'Deseja excluir este status permanentemente?' }, remote: true, class: 'trash' ) %>
+        </td>
+    </tr>
+<% end %>

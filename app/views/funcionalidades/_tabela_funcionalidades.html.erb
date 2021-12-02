@@ -1,0 +1,28 @@
+<% @funcionalidades.each do |funcionalidade| %>
+    <tr>
+        <td scope="row" style="text-align: left; padding: 15px">
+            <%= funcionalidade.sys_id %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= funcionalidade.nome %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= funcionalidade.descricao %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= funcionalidade.incluir %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= funcionalidade.alterar %>
+        </td>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+            <%= funcionalidade.excluir %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('pen'), edit_funcionalidade_path(id: funcionalidade.id, empresa_id: funcionalidade.empresa.id), class:'pencil') %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('trash'), funcionalidade_path(id: funcionalidade.id, empresa_id: funcionalidade.empresa.id), method: :delete, data: { confirm: 'Deseja excluir este status permanentemente?' }, remote: true, class: 'trash' ) %>
+        </td>
+    </tr>
+<% end %>

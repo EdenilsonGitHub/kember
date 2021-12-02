@@ -1,0 +1,19 @@
+<% @colunas.each do |coluna| %>
+    <tr>
+        <td scope="row" style="text-align: left; padding: 15px">
+            <%= coluna.nome %>
+        </td>
+        <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
+            <%= coluna.posicao %>
+        </td>
+        <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
+            <%= coluna.status.try(:nome) %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('pen'), edit_coluna_path(id: coluna.id, projeto_id: @projeto.id), class:'pencil') %>
+        </td>
+        <td class="text-center" style="width: 35px">
+            <%= link_to(fa_icon('trash'), coluna_path(id: coluna.id, projeto_id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir esta coluna permanentemente?' }, remote: true, class: 'trash' ) %>
+        </td>
+    </tr>
+<% end %>

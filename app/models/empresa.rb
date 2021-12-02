@@ -16,5 +16,6 @@ class Empresa < ActiveRecord::Base
     has_many :status
     has_many :usuario_empresas
     has_many :funcionalidades
+    has_many :perfils
 
 end 

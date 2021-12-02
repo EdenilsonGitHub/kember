@@ -1,0 +1,37 @@
+<div class="div-titulo" style="margin-bottom: 10px">
+    <div style="font-size: 25px; width: 40%; text-align: right; display: inline-block">
+        Perfis
+    </div>
+    <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
+        <%= link_to 'Novo perfil', new_perfil_path(empresa_id: @empresa.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    </div>
+</div>
+<table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @perfis.any? ? 'table-bordered' : '' %>">
+    <% if @perfis.any? %>
+        <thead>
+            <tr>
+                <th style="padding: 5px; padding-left: 15px">
+                    Nome
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    Descrição
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tabela_perfis">
+            <%= render('tabela_perfis') %>
+        </tbody>
+    <% else %>
+        <tbody>
+            <tr>
+                <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                    Sem registros
+                </td>
+            </tr>
+        </tbody>
+    <% end %>
+</table>

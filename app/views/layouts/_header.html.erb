@@ -14,6 +14,9 @@
                     <li class="nav-item <%= 'active' if @aba_selecionada == 'projetos' %>">
                         <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %>
                     </li>
+                    <li class="nav-item <%= 'active' if @aba_selecionada == 'empresas' %>">
+                        <%= link_to 'Empresas', empresas_path(), class: 'nav-link' %>
+                    </li>
                 <% end %>
                 <li class="nav-item <%= 'active' if @aba_selecionada == 'sobre' %>">
                     <%= link_to 'Sobre', em_breve_path(selecionada: 'sobre'), class: 'nav-link' %>

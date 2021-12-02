@@ -1,0 +1,13 @@
+<div class="div-titulo" style="margin-bottom: 10px">
+    <div style="font-size: 25px; width: 44%; text-align: right; display: inline-block">
+        Minhas empresas
+    </div>
+    <div style="font-size: 25px; width: 29%; text-align: right; display: inline-block;">
+        <%= link_to 'Nova empresa', new_empresa_path(), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    </div>
+</div>
+<table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @empresas.any? ? 'table-bordered' : '' %>">
+    <div class="tabela_empresas">
+        <%= render('tabela_empresas') %>
+    </div>
+</table>

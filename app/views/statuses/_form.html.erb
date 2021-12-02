@@ -18,6 +18,10 @@
         <%= u.label "Prioridade", class: 'label-form' %>
         <%= u.text_field :rank, class: 'form-control valor-form' %>
     </div>
+    <div class="form-group" style="margin: 0 auto; text-align: left; margin-bottom: 20px">
+        <%= u.label "Projeto", class: 'label-form', style: 'width: 100%' %>
+        <%= u.select :projeto_id, options_from_collection_for_select(@projetos, "id", "nome"), prompt: "Selecione", class: 'form-control input-lg', style: 'width: 100%' %>
+    </div>
     <table style="width: 100%; height: auto">
         <tr>
             <td style="width: 50%; text-align: right">
@@ -37,7 +41,6 @@
         </tr>
     </table>
     <%= u.hidden_field :empresa_id, value: 1 %>
-    <%= u.hidden_field :projeto_id, value: params[:projeto_id] %>
     <div style="width: 100%; text-align: center">
         <%= link_to "Cancelar", statuses_path(projeto_id: params[:projeto_id]), class: 'btn btn-danger' %>
         <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>

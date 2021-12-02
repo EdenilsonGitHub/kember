@@ -1,0 +1,40 @@
+<div class="div-titulo" style="margin-bottom: 10px">
+    <div style="font-size: 25px; width: 40%; text-align: right; display: inline-block">
+        Colunas
+    </div>
+    <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
+        <%= link_to 'Nova coluna', new_coluna_path(projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    </div>
+</div>
+<table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @colunas.any? ? 'table-bordered' : '' %>">
+    <% if @colunas.any? %>
+        <thead>
+            <tr>
+                <th style="padding: 5px; padding-left: 15px">
+                    Nome
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    Posição
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    Status
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tabela_colunas">
+            <%= render('tabela_colunas') %>
+        </tbody>
+    <% else %>
+        <tbody>
+            <tr>
+                <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                    Sem registros
+                </td>
+            </tr>
+        </tbody>
+    <% end %>
+</table>
