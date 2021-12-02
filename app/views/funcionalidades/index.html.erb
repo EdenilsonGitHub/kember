@@ -1,0 +1,49 @@
+<div class="div-titulo" style="margin-bottom: 10px">
+    <div style="font-size: 25px; width: 40%; text-align: right; display: inline-block">
+        Funcionalidades
+    </div>
+    <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
+        <%= link_to 'Novo perfil', new_funcionalidade_path(empresa_id: @empresa.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    </div>
+</div>
+<table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @funcionalidades.any? ? 'table-bordered' : '' %>">
+    <% if @funcionalidades.any? %>
+        <thead>
+            <tr>
+                <th style="padding: 5px; padding-left: 15px">
+                    Sys ID
+                </th>
+                <th style="padding: 5px; padding-left: 15px">
+                    Nome
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    Descrição
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    incluir
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    alterar
+                </th>
+                <th style="padding: 5px; text-align: center">
+                    excluir
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+                <th style="padding: 5px; text-align: center">
+                </th>
+            </tr>
+        </thead>
+        <tbody class="tabela_funcionalidades">
+            <%= render('tabela_funcionalidades') %>
+        </tbody>
+    <% else %>
+        <tbody>
+            <tr>
+                <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                    Sem registros
+                </td>
+            </tr>
+        </tbody>
+    <% end %>
+</table>

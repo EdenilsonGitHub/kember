@@ -14,7 +14,7 @@
         <%= label_tag "Status", nil, style: 'margin-left: 5px; margin-bottom: 0px' %>
         <%= select_tag :status_id, options_from_collection_for_select(@status, "id", "nome"), prompt: "Selecione", class:'form-control input-lg' %>
     </div>
-    <%= u.hidden_field :projeto_id, value: 1 %>
+    <%= u.hidden_field :projeto_id, value: @coluna.projeto.id %>
     <%= u.hidden_field :empresa_id, value: 1 %>
     <div style="width: 100%; text-align: center">
         <%= link_to 'Cancelar', perfils_path(empresa_id: 1), class: 'btn btn-danger' %>

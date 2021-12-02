@@ -3,7 +3,7 @@ class SprintsController < ApplicationController
     def show
         @sprint = Sprint.find_by_id(params[:id])
         @projeto = @sprint.projeto
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         carrega_quadros()
         @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
     end
@@ -17,7 +17,7 @@ class SprintsController < ApplicationController
         @sprint = Sprint.find_by_id(params[:id])
         @projeto = @sprint.projeto
         @usuarios = @usuarios = Usuario.where(id: UsuarioProjeto.where(projeto_id: @projeto.id).pluck(:usuario_id))
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         carrega_quadros()
         if @sprint.update(params.require(:sprint).permit(:nome, :descricao, :inicio_sprint, :fim_sprint, :burndown, :sprint_atual, :projeto_id))
             render 'show'
@@ -46,7 +46,7 @@ class SprintsController < ApplicationController
     def mover_tarefa
         @sprint = Sprint.find_by_id(params[:sprint])
         @projeto = Projeto.find_by_id(params[:projeto])
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         @coluna_atual = @projeto.colunas.find_by_id(params[:coluna_atual])
         @proximas_colunas = @projeto.colunas.where("id <> (?)", @coluna_atual.id)
         @quadro = @coluna_atual.quadros.find_by_id(params[:quadro])
@@ -108,7 +108,7 @@ class SprintsController < ApplicationController
         @quadro = Quadro.find_by_id(params[:quadro_id])
         @quadro.update(usuario_id: params[:usuario_id])
         @projeto = Projeto.find_by_id(params[:projeto])
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         @sprint = Sprint.find_by_id(params[:sprint])
         carrega_quadros()
     end
@@ -118,13 +118,13 @@ class SprintsController < ApplicationController
         @quadro.usuario_id = nil
         @quadro.save(validate: false)
         @projeto = Projeto.find_by_id(params[:projeto])
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         @sprint = Sprint.find_by_id(params[:sprint])
         carrega_quadros()
     end
 
     def carrega_quadros
-        @colunas_ids = @projeto.colunas.pluck(:id)
+        @colunas_ids = @projeto.colunas.order('posicao ASC').pluck(:id)
         @hash_quadros = {}
         @colunas_ids.each do |col|
             @hash_quadros[col] = {}
@@ -135,7 +135,7 @@ class SprintsController < ApplicationController
     def next_prioridade
         @sprint = Sprint.find_by_id(params[:sprint_id])
         @projeto = @sprint.projeto
-        @colunas = @projeto.colunas
+        @colunas = @projeto.colunas.order('posicao ASC')
         @quadros_antigos = @sprint.quadros.joins(:status).where('status.lista = false AND usuario_id = (?)', @usuario_logado.id)
         @quadros_antigos.each do |quad|
             @proximo_status_temp = @projeto.status.where('rank > (?)', quad.status.rank).order('rank').first    

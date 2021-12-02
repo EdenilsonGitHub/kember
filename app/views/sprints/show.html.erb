@@ -15,6 +15,7 @@
         <%= link_to 'Next', next_prioridade_path(sprint_id: @sprint.id), class: 'next', remote: true %>
         <%= link_to '', burndown_path(sprint_id: @sprint.id), class: 'next fa fa-chart-bar', target: '_blank', style: 'height: 45px; padding-top: 9px' %>
         <%= link_to '', edit_sprint_path(id: @sprint.id), class: 'editar_config fa fa-cog', style: 'height: 45px; padding-top: 4px' %>
+        <%= link_to '', sprint_path(id: @sprint.id), method: :delete, data: { confirm: 'Deseja excluir a sprint?' }, class: 'excluir_sprint fa fa-trash', style: 'height: 45px; padding-top: 4px' %>
     </div>
     <div class="atualiza_sprint">
         <%= render('sprint') %>

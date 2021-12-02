@@ -113,7 +113,8 @@
 }
 
 .next,
-.editar_config {
+.editar_config,
+.excluir_sprint {
     font-weight: bold;
     text-decoration: none;
     display: inline-block;
@@ -122,15 +123,29 @@
     margin-left: 5px;
 }
 
+.edit_config {
+    text-decoration: none;
+    display: inline-block;
+    color: #494749;
+    background-color: white;
+}
+
 .editar_config {
-    padding: 3px 20px 3px 5px;
+    padding: 3px 3px 3px 3px;
     color: #494749;
     background-color: white;
     font-size: 35px;
 }
 
+.excluir_sprint {
+    padding: 3px 3px 3px 1px;
+    color: #e7312b !important;
+    background-color: white;
+    font-size: 35px;
+}
+
 .next {
-    padding: 4px 30px 4px 30px;
+    padding: 4px 25px 4px 25px;
     color: white;
     background-color: #257df0;
     font-size: 25px;
@@ -141,8 +156,13 @@
     background-color: #2063b9;
 }
 
-.editar_config:hover {
+.editar_config:hover,
+.edit_config:hover {
     color: #131213;
+}
+
+.excluir_sprint:hover {
+    color: #ad2622 !important;
 }
 
 .next:visited,

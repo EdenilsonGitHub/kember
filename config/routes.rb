@@ -35,8 +35,12 @@ Rails.application.routes.draw do
   get  'burndown',               to: 'sprints#burndown',               as: :burndown
   
   # Perfil
-  get  'adicionar_funcionalidade',        to: 'perfils#adicionar_funcionalidade',        as: :adicionar_funcionalidade
-  post 'adicionar_funcionalidade_perfil', to: 'perfils#adicionar_funcionalidade_perfil', as: :adicionar_funcionalidade_perfil
+  get    'adicionar_funcionalidade',        to: 'perfils#adicionar_funcionalidade',        as: :adicionar_funcionalidade
+  post   'adicionar_funcionalidade_perfil', to: 'perfils#adicionar_funcionalidade_perfil', as: :adicionar_funcionalidade_perfil
+  get    'excluir_funcionalidade',          to: 'perfils#excluir_funcionalidade',          as: :excluir_funcionalidade
+  
+  # Empresa
+  get    'sair_empresa',                    to: 'empresas#sair_empresa',                   as: :sair_empresa
 
   # Projeto
   get  'backlog', to: 'projetos#backlog', as: :backlog

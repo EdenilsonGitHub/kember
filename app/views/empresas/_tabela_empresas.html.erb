@@ -1,0 +1,67 @@
+<% if @empresas.any? %>
+    <thead>
+        <tr>
+            <th style="padding: 5px; padding-left: 15px">
+                Nome
+            </th>
+            <th style="padding: 5px; padding-left: 15px">
+                Nome fantasia
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Sigla
+            </th>
+            <th style="padding: 5px; text-align: center">
+                CNPJ
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Telefone
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Email
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Ativo
+            </th>
+            <th style="padding: 5px; text-align: center">
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @empresas.each do |empresa| %>
+            <tr>
+                <td scope="row" style="text-align: left; padding: 15px">
+                    <%= empresa.nome %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.nome_fantasia %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.sigla %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.cnpj %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.telefone %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.email %>
+                </td>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
+                    <%= empresa.ativo %>
+                </td>
+                <td class="text-center" style="width: 35px">
+                    <%= link_to(fa_icon('car'), sair_empresa_path(empresa_id: empresa.id), remote: true, class: 'trash' ) %>
+                </td>
+            </tr>
+        <% end %>
+    </tbody>
+<% else %>
+    <tbody>
+        <tr>
+            <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                Sem registros
+            </td>
+        </tr>
+    </tbody>
+<% end %>

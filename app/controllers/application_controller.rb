@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
     def aba_selecionada
         @aba_selecionada = "inicio" if params[:controller] == "home"
+        @aba_selecionada ||= "empresas" if params[:controller] == "empresas"
         @aba_selecionada ||= "projetos" if params[:controller] == "projetos"
         @aba_selecionada ||= "projetos" if params[:controller] == "colunas"
-        @aba_selecionada ||= "projetos" if params[:controller] == "empresas"
         @aba_selecionada ||= "projetos" if params[:controller] == "funcionalidades"
         @aba_selecionada ||= "projetos" if params[:controller] == "perfils"
         @aba_selecionada ||= "projetos" if params[:controller] == "quadros"
