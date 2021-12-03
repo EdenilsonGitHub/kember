@@ -36,8 +36,11 @@ Rails.application.routes.draw do
   
   # Perfil
   get    'adicionar_funcionalidade',        to: 'perfils#adicionar_funcionalidade',        as: :adicionar_funcionalidade
+  get    'adicionar_usuario_p',             to: 'perfils#adicionar_usuario_p',             as: :adicionar_usuario_p
   post   'adicionar_funcionalidade_perfil', to: 'perfils#adicionar_funcionalidade_perfil', as: :adicionar_funcionalidade_perfil
+  post   'adicionar_usuario_perfil',        to: 'perfils#adicionar_usuario_perfil',        as: :adicionar_usuario_perfil
   get    'excluir_funcionalidade',          to: 'perfils#excluir_funcionalidade',          as: :excluir_funcionalidade
+  get    'excluir_usuario',                 to: 'perfils#excluir_usuario',                 as: :excluir_usuario
   
   # Empresa
   get    'sair_empresa',                    to: 'empresas#sair_empresa',                   as: :sair_empresa

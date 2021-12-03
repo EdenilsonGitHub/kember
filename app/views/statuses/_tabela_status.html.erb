@@ -9,11 +9,15 @@
         <td scope="row" style="width: 100px; padding: 15px; height: 50px; background-color: <%= status.cor_fundo %>; color: <%= status.cor_fonte %>; text-align: center">
             Texto
         </td>
-        <td class="text-center" style="width: 35px">
-            <%= link_to(fa_icon('pen'), edit_status_path(id: status.id, projeto_id: @projeto.id), class:'pencil') %>
-        </td>
-        <td class="text-center" style="width: 35px">
-            <%= link_to(fa_icon('trash'), status_path(id: status.id, projeto_id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir este status permanentemente?' }, remote: true, class: 'trash' ) %>
-        </td>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 4').any? %>
+            <td class="text-center" style="width: 35px">
+                <%= link_to(fa_icon('pen'), edit_status_path(id: status.id, projeto_id: @projeto.id), class:'pencil') %>
+            </td>
+        <% end %>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 2').any? %>
+            <td class="text-center" style="width: 35px">
+                <%= link_to(fa_icon('trash'), status_path(id: status.id, projeto_id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir este status permanentemente?' }, remote: true, class: 'trash' ) %>
+            </td>
+        <% end %>
     </tr>
 <% end %>

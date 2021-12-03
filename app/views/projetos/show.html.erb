@@ -3,42 +3,60 @@
         <div style="display: inline-block; width: 25vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 20px; font-size: 25px; background-color: #9525E3; color: white; font-weight: bold;">
             <%= @projeto.nome %>
         </div>
-        <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
-            <%= link_to "Status", statuses_path(projeto_id: @projeto.id), class: 'lista_prioridades' %>
-        </div>
-        <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
-            <%= link_to "Colunas", colunas_path(projeto_id: @projeto.id), class: 'lista_prioridades' %>
-        </div>
-        <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
-            <%= link_to 'Gerenciamento', gerenciamento_path(empresa_id: 1), class: 'lista_prioridades' %>
-        </div>
-        <div style="display: inline-block; width: 7vw; height: 45px; padding-top: 3px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; font-weight: bold; border: 1px solid #257df0">
-            <%= link_to(fa_icon('cog'), edit_projeto_path(id: @projeto.id), class: 'edit_config' ) %>
-            <%= link_to(fa_icon('trash'), projeto_path(id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir o projeto?' }, class: 'trash' ) %>
-        </div>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 3').any? %>
+            <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+                <%= link_to "Status", statuses_path(projeto_id: @projeto.id), class: 'lista_prioridades' %>
+            </div>
+        <% end %>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 7').any? %>
+            <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+                <%= link_to "Colunas", colunas_path(projeto_id: @projeto.id), class: 'lista_prioridades' %>
+            </div>
+        <% end %>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 9').any? %>
+            <div style="display: inline-block; width: 20vw; height: 45px; padding-top: 5px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; color: #257df0; font-weight: bold; border: 1px solid #257df0">
+                <%= link_to 'Gerenciamento', gerenciamento_path(empresa_id: 1), class: 'lista_prioridades' %>
+            </div>
+        <% end %>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 13').any? || @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 11').any? %>
+            <div style="display: inline-block; width: 7vw; height: 45px; padding-top: 3px; border-radius: 20px; float: left; margin-left: 5px; font-size: 25px; background-color: white; font-weight: bold; border: 1px solid #257df0">
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 13').any? %>
+                    <%= link_to(fa_icon('cog'), edit_projeto_path(id: @projeto.id), class: 'edit_config' ) %>
+                <% end %>
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 11').any? %>
+                    <%= link_to(fa_icon('trash'), projeto_path(id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir o projeto?' }, class: 'trash' ) %>
+                <% end %>
+            </div>
+        <% end %>
     <div>
-    <div style="margin-top: 30px; text-align: center; margin-bottom: 150px; height: 500px">
-        <table style="background-color: white; width: 90%; margin: 0 auto;">
-            <thead>
-                <tr>
-                    <th colspan="1" style="font-size: 25px; width: 53.8%; text-align: right;">Sprints</th>
-                    <th colspan="1" style="font-size: 25px"><%= link_to 'Nova sprint', new_sprint_path(projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td colspan="2" style="padding: 15px 40px 15px 40px">
-                        <%= link_to "Backlog", backlog_path(projeto_id: @projeto.id), class: "botoes-backlog" %>
-                    </td>
-                </tr>
-                <% @sprints.each do |sprint| %>
+    <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 16').any? %>
+        <div style="margin-top: 30px; text-align: center; margin-bottom: 150px; height: 500px">
+            <table style="background-color: white; width: 90%; margin: 0 auto;">
+                <thead>
+                    <tr>
+                        <th colspan="1" style="font-size: 25px; width: <%= @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 10').any? ? '53.8%' : '50.8%' %>; text-align: right;">Sprints</th>
+                        <th colspan="1" style="font-size: 25px">
+                        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 14').any? %>
+                            <%= link_to 'Nova sprint', new_sprint_path(projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+                        <% end %>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
                     <tr>
                         <td colspan="2" style="padding: 15px 40px 15px 40px">
-                            <%= link_to sprint.nome, sprint_path(id: sprint.id), class: "#{sprint.sprint_atual ? 'botoes-projetos-atual' : 'botoes-projetos'}" %>
-                        <td>
-                    <tr>
-                <% end %>
-            </tbody>
-        </table>
-    </div>
+                            <%= link_to "Backlog", backlog_path(projeto_id: @projeto.id), class: "botoes-backlog" %>
+                        </td>
+                    </tr>
+                    <% @sprints.each do |sprint| %>
+                        <tr>
+                            <td colspan="2" style="padding: 15px 40px 15px 40px">
+                                <%= link_to sprint.nome, sprint_path(id: sprint.id), class: "#{sprint.sprint_atual ? 'botoes-projetos-atual' : 'botoes-projetos'}" %>
+                            <td>
+                        <tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+    <% end %>
 </div>

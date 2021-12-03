@@ -16,8 +16,8 @@ class ColunasController < ApplicationController
     end
 
     def index
-        @projeto = Projeto.find_by_id(params[:projeto_id])
-        @colunas = @projeto.colunas.order('posicao ASC')
+        @projeto = Projeto.first
+        @colunas = Coluna.order('posicao ASC')
     end
 
     def destroy

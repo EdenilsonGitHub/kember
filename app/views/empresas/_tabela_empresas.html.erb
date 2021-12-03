@@ -47,8 +47,8 @@
                 <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
                     <%= empresa.email %>
                 </td>
-                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
-                    <%= empresa.ativo %>
+                <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center; <%= empresa.ativo ? 'color: green; font-weight: bold' : 'color: red' %>">
+                    <%= empresa.ativo ? 'Sim' : 'Não' %>
                 </td>
                 <td class="text-center" style="width: 35px">
                     <%= link_to(fa_icon('car'), sair_empresa_path(empresa_id: empresa.id), remote: true, class: 'trash' ) %>

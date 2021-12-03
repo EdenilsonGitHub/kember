@@ -2,30 +2,33 @@ class StatusesController < ApplicationController
 
     def index
         @projeto = Projeto.find_by_id(params[:projeto_id])
-        @status = @projeto.status.order('rank ASC')
+        @status = @projeto.status.order('rank DESC')
     end
 
     def new
         @status = Status.new
+        @projetos = Projeto.all
     end
 
     def edit
         @status = Status.find_by_id(params[:id])
-        @projetos = @status.empresa.projetos
+        @projetos = Projeto.all
     end
 
     def destroy
         @status = Status.find_by_id(params[:id])
         @projeto = @status.projeto
         @status.destroy
-        @status = @projeto.status.order('rank ASC')
+        @status = @projeto.status.order('rank DESC')
+        @projetos = Projeto.all
     end
 
     def update
         @status = Status.find_by_id(params[:id])
         @projeto = Projeto.find_by_id(params[:status][:projeto_id])
-        if @status.update(params.require(:status).permit(:nome, :cor_fundo, :cor_fonte, :rank, :finalizador, :lista, :empresa_id, :projeto_id))
-            @status = @projeto.status.order('rank ASC')
+        @projetos = Projeto.all
+        if @status.update(params.require(:status).permit(:nome, :cor_fundo, :cor_fonte, :rank, :finalizador, :lista, :projeto_id))
+            @status = @projeto.status.order('rank DESC')
             render 'index'
         else
             render 'edit'
@@ -34,7 +37,8 @@ class StatusesController < ApplicationController
 
     def create
         @status = Status.new(params.require(:status).permit(:nome, :cor_fundo, :cor_fonte, :rank, :finalizador, :lista, :projeto_id, :empresa_id))
-        if @status.save
+        @projetos = Projeto.all
+        if @status.save(validate: false)
             redirect_to statuses_path(projeto_id: @status.projeto.id)
         else
             render action: 'new'

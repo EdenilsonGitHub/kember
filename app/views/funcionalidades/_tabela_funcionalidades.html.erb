@@ -9,14 +9,14 @@
         <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
             <%= funcionalidade.descricao %>
         </td>
-        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
-            <%= funcionalidade.incluir %>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center; <%= funcionalidade.incluir ? 'color: green; font-weight: bold' : 'color: red' %>">
+            <%= funcionalidade.incluir ? 'Sim' : 'Não' %>
         </td>
-        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
-            <%= funcionalidade.alterar %>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center; <%= funcionalidade.alterar ? 'color: green; font-weight: bold' : 'color: red' %>">
+            <%= funcionalidade.alterar ? 'Sim' : 'Não' %>
         </td>
-        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center">
-            <%= funcionalidade.excluir %>
+        <td scope="row" style="width: auto; padding: 15px; height: 50px; text-align: center; <%= funcionalidade.excluir ? 'color: green; font-weight: bold' : 'color: red' %>">
+            <%= funcionalidade.excluir ? 'Sim' : 'Não' %>
         </td>
         <td class="text-center" style="width: 35px">
             <%= link_to(fa_icon('pen'), edit_funcionalidade_path(id: funcionalidade.id, empresa_id: funcionalidade.empresa.id), class:'pencil') %>

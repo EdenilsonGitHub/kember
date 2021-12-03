@@ -3,7 +3,9 @@
         Status
     </div>
     <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
-        <%= link_to 'Novo status', new_status_path(usuario: @usuario_logado.id, projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+        <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 1').any? %>
+            <%= link_to 'Novo status', new_status_path(usuario: @usuario_logado.id, projeto_id: @projeto.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+        <% end %>
     </div>
 </div>
 <table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @status.any? ? 'table-bordered' : '' %>">
@@ -19,10 +21,14 @@
                 <th style="padding: 5px; text-align: center">
                     Demonstração
                 </th>
-                <th style="padding: 5px; text-align: center">
-                </th>
-                <th style="padding: 5px; text-align: center">
-                </th>
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 4').any? %>
+                    <th style="padding: 5px; text-align: center">
+                    </th>
+                <% end %>
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 2').any? %>
+                    <th style="padding: 5px; text-align: center">
+                    </th>
+                <% end %>
             </tr>
         </thead>
         <tbody class="tabela_status">
