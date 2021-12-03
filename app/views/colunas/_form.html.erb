@@ -11,13 +11,13 @@
         <%= u.number_field :posicao, class: 'form-control valor-form' %>
     </div>
     <div class="form-group" style="margin: 0 auto; text-align: left; margin-bottom: 20px">
-        <%= label_tag "Status", nil, style: 'margin-left: 5px; margin-bottom: 0px' %>
-        <%= select_tag :status_id, options_from_collection_for_select(@status, "id", "nome"), prompt: "Selecione", class:'form-control input-lg' %>
+        <%= u.label "Status", class: 'label-form', style: 'width: 100%' %>
+        <%= u.select :status_id, options_from_collection_for_select(@status, "id", "nome"), prompt: "Selecione", class:'form-control input-lg', style: 'width: 100%' %>
     </div>
-    <%= u.hidden_field :projeto_id, value: @coluna.projeto.id %>
-    <%= u.hidden_field :empresa_id, value: 1 %>
+    <%= u.hidden_field :projeto_id, value: Projeto.first.id %>
+    <%= u.hidden_field :empresa_id, value: Empresa.first.id %>
     <div style="width: 100%; text-align: center">
-        <%= link_to 'Cancelar', perfils_path(empresa_id: 1), class: 'btn btn-danger' %>
+        <%= link_to 'Cancelar', colunas_path(empresa_id: 1), class: 'btn btn-danger' %>
         <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>
     </div>
 <% end %>

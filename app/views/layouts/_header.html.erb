@@ -11,9 +11,11 @@
                     <%= link_to 'Inicio', home_index_path(), class: 'nav-link' %>
                 </li>
                 <% if @usuario_logado %>
-                    <li class="nav-item <%= 'active' if @aba_selecionada == 'projetos' %>">
-                        <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %>
-                    </li>
+                    <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 12').any? %>
+                        <li class="nav-item <%= 'active' if @aba_selecionada == 'projetos' %>">
+                            <%= link_to 'Projetos', projetos_path(), class: 'nav-link' %>
+                        </li>
+                    <% end %>
                     <li class="nav-item <%= 'active' if @aba_selecionada == 'empresas' %>">
                         <%= link_to 'Empresas', empresas_path(), class: 'nav-link' %>
                     </li>
@@ -40,7 +42,9 @@
                             <button type="button" class="btn btn-padrao nav-link"><%= @usuario_logado.nome %></button>
                             <button type="button" class="btn btn-padrao dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" style="padding-left: 8px!important; color: white"></button>
                             <div class="dropdown-menu ml-118px">
-                                <%= link_to 'Minha conta', usuario_path(@usuario_logado), class: 'dropdown-item background-color-padrao color-padrao drop-first-list' %>
+                                <!--
+                                    <%= link_to 'Minha conta', usuario_path(@usuario_logado), class: 'dropdown-item background-color-padrao color-padrao drop-first-list' %>
+                                -->
                                 <%= link_to 'Sair', sair_path, class: 'dropdown-item background-color-padrao color-padrao drop-last-list'%>
                             </div>
                         </div>

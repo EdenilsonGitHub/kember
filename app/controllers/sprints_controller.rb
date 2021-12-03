@@ -83,7 +83,7 @@ class SprintsController < ApplicationController
 
     def lista_prioridades
         @sprint = Sprint.find_by_id(params[:sprint_id])
-        @quadros = @sprint.quadros.joins(:status).where('status.finalizador = false AND status.lista = true AND status.lista = true').order('rank DESC, status.rank ASC')
+        @quadros = @sprint.quadros.joins(:status).where('(usuario_id <> :usuario_logado OR usuario_id IS NULL) AND status.finalizador = false AND status.lista = true', usuario_logado: @usuario_logado.id).order('status.rank DESC, rank DESC')
     end
 
     def adicionar_novo_usuario
@@ -133,25 +133,56 @@ class SprintsController < ApplicationController
     end
 
     def next_prioridade
+        @sem_tarefas = false
         @sprint = Sprint.find_by_id(params[:sprint_id])
         @projeto = @sprint.projeto
         @colunas = @projeto.colunas.order('posicao ASC')
         @quadros_antigos = @sprint.quadros.joins(:status).where('status.lista = false AND usuario_id = (?)', @usuario_logado.id)
         @quadros_antigos.each do |quad|
+            next if quad.status.finalizador
             @proximo_status_temp = @projeto.status.where('rank > (?)', quad.status.rank).order('rank').first    
             @proxima_coluna_temp = Coluna.where(status_id: @proximo_status_temp.id).first
-            quad.update(usuario_id: @usuario_logado.id, status_id: @proximo_status_temp.id, coluna_id: @proxima_coluna_temp.id)
+            if @proximo_status_temp.finalizador
+                quad.update(usuario_id: @usuario_logado.id, status_id: @proximo_status_temp.id, coluna_id: @proxima_coluna_temp.id, baixada_dia: Time.now)
+            else
+                quad.update(usuario_id: @usuario_logado.id, status_id: @proximo_status_temp.id, coluna_id: @proxima_coluna_temp.id)
+            end
         end
-        @quadro = @sprint.quadros.joins(:status).where('status.finalizador = false AND status.lista = true').order('rank DESC, status.rank ASC').first
-        @proximo_status = @projeto.status.where('rank > (?)', @quadro.status.rank).order('rank').first
-        @proxima_coluna = Coluna.where(status_id: @proximo_status.id).first
-        @quadro.update(usuario_id: @usuario_logado.id, status_id: @proximo_status.id, coluna_id: @proxima_coluna.id)
+        @quadro = @sprint.quadros.joins(:status).where('(usuario_id <> :usuario_logado OR usuario_id IS NULL) AND status.finalizador = false AND status.lista = true', usuario_logado: @usuario_logado.id).order('status.rank DESC, rank DESC').first
+        @sem_tarefas = true unless @quadro
+        unless @sem_tarefas
+            @proximo_status = @projeto.status.where('rank > (?)', @quadro.status.rank).order('rank').first
+            @proxima_coluna = Coluna.where(status_id: @proximo_status.id).first
+            @quadro.update(usuario_id: @usuario_logado.id, status_id: @proximo_status.id, coluna_id: @proxima_coluna.id)
+        end
         carrega_quadros()
     end
 
     def burndown
         @sprint = Sprint.find_by_id(params[:sprint_id])
-        @quadros = @sprint.quadros
+        @quadros = @sprint.quadros.where(burndown: true)
+        @ideal = @quadros.pluck(:pontuacao).inject(:+)
+        @ideal_save = @quadros.pluck(:pontuacao).inject(:+)
+        @real = @quadros.pluck(:pontuacao).inject(:+)
+        @hash_ideal = []
+        @dias_sprint = (@sprint.fim_sprint.to_date - @sprint.inicio_sprint.to_date).to_i
+        @hash_dias_sprint = []
+        @ideal_por_dia = @ideal / @dias_sprint
+        @dias_sprint.times{
+            @hash_ideal << @ideal
+            @ideal = @ideal - @ideal_por_dia
+        }
+        @hash_real = []
+        @dia = 0
+        @pontuacao_dia_anterior = 0
+        (@sprint.fim_sprint.to_date - @sprint.inicio_sprint.to_date).to_i.times{
+            @dia_sprint = @sprint.inicio_sprint.to_date + @dia.days
+            @pontuacao_dia = @quadros.where('baixada_dia IS NOT NULL AND date(baixada_dia) = (?)', @dia_sprint.to_date).pluck(:pontuacao).inject(:+)
+            @hash_real << @real
+            @real = @real - @pontuacao_dia.to_i
+            @hash_dias_sprint << @dia_sprint.day             
+            @dia += 1 
+        }
     end
 
 end

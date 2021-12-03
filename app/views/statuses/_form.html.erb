@@ -40,7 +40,7 @@
             </td>
         </tr>
     </table>
-    <%= u.hidden_field :empresa_id, value: 1 %>
+    <%= u.hidden_field :empresa_id, value: Empresa.first.try(:id) %>
     <div style="width: 100%; text-align: center">
         <%= link_to "Cancelar", statuses_path(projeto_id: params[:projeto_id]), class: 'btn btn-danger' %>
         <%= u.submit 'Confirmar', class: 'btn btn-success', style: 'margin: 0 auto' %>

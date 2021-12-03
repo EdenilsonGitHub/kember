@@ -18,7 +18,7 @@ class ProjetosController < ApplicationController
 
     def create
         @projeto = Projeto.new(params.require(:projeto).permit(:nome, :sigla, :descricao, :email, :inicio_projeto, :fim_projeto, :usuario_id, :empresa_id))
-        if @projeto.save
+        if @projeto.save(validate: false)
             @usuario_projeto = UsuarioProjeto.new(usuario_id: params[:usuario_id], projeto_id: @projeto.id)
             @usuario_projeto.save
             redirect_to projetos_path

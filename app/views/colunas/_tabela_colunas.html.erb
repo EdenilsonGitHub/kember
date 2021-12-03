@@ -1,19 +1,56 @@
-<% @colunas.each do |coluna| %>
-    <tr>
-        <td scope="row" style="text-align: left; padding: 15px">
-            <%= coluna.nome %>
-        </td>
-        <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
-            <%= coluna.posicao %>
-        </td>
-        <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
-            <%= coluna.status.try(:nome) %>
-        </td>
-        <td class="text-center" style="width: 35px">
-            <%= link_to(fa_icon('pen'), edit_coluna_path(id: coluna.id, projeto_id: @projeto.id), class:'pencil') %>
-        </td>
-        <td class="text-center" style="width: 35px">
-            <%= link_to(fa_icon('trash'), coluna_path(id: coluna.id, projeto_id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir esta coluna permanentemente?' }, remote: true, class: 'trash' ) %>
-        </td>
-    </tr>
+<% if @colunas.any? %>
+    <thead>
+        <tr>
+            <th style="padding: 5px; padding-left: 15px">
+                Nome
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Posição
+            </th>
+            <th style="padding: 5px; text-align: center">
+                Status
+            </th>
+            <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 8').any? %>
+                <th style="padding: 5px; text-align: center">
+                </th>
+            <% end %>
+            <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 6').any? %>
+                <th style="padding: 5px; text-align: center">
+                </th>
+            <% end %>
+        </tr>
+    </thead>
+    <tbody>
+        <% @colunas.each do |coluna| %>
+            <tr>
+                <td scope="row" style="text-align: left; padding: 15px">
+                    <%= coluna.nome %>
+                </td>
+                <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center">
+                    <%= coluna.posicao %>
+                </td>
+                <td scope="row" style="width: 100px; padding: 15px; height: 50px; text-align: center; background-color: <%= coluna.status.cor_fundo %>; color: <%= coluna.status.cor_fonte %>">
+                    <%= coluna.status.try(:nome) %>
+                </td>
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 8').any? %>
+                    <td class="text-center" style="width: 35px">
+                        <%= link_to(fa_icon('pen'), edit_coluna_path(id: coluna.id, projeto_id: @projeto.id), class:'pencil') %>
+                    </td>
+                <% end %>
+                <% if @usuario_logado.perfil.perfil_funcionalidades.joins(:funcionalidade).where('sys_id = 6').any? %>
+                    <td class="text-center" style="width: 35px">
+                        <%= link_to(fa_icon('trash'), coluna_path(id: coluna.id, projeto_id: @projeto.id), method: :delete, data: { confirm: 'Deseja excluir esta coluna permanentemente?' }, remote: true, class: 'trash' ) %>
+                    </td>
+                <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+<% else %>
+    <tbody>
+        <tr>
+            <td colspan="2" scope="row" style="text-align: left; color: red; padding: 15px">
+                Sem registros
+            </td>
+        </tr>
+    </tbody>
 <% end %>

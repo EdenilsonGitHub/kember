@@ -14,8 +14,8 @@ class FuncionalidadesController < ApplicationController
     end
 
     def index
-        @empresa = Empresa.find_by_id(params[:empresa_id])
-        @funcionalidades = Funcionalidade.where(empresa_id: @empresa.id).order('sys_id ASC')
+        @empresa = Empresa.first
+        @funcionalidades = Funcionalidade.order('sys_id ASC')
     end
 
     def destroy

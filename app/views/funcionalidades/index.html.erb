@@ -1,9 +1,9 @@
 <div class="div-titulo" style="margin-bottom: 10px">
-    <div style="font-size: 25px; width: 40%; text-align: right; display: inline-block">
+    <div style="font-size: 25px; width: 50%; text-align: right; display: inline-block">
         Funcionalidades
     </div>
-    <div style="font-size: 25px; width: 39%; text-align: right; display: inline-block;">
-        <%= link_to 'Novo perfil', new_funcionalidade_path(empresa_id: @empresa.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
+    <div style="font-size: 25px; width: 29%; text-align: right; display: inline-block;">
+        <%= link_to 'Nova funcionalidade', new_funcionalidade_path(empresa_id: @empresa.id), class: 'btn btn-outline-success', style: 'border-radius: 15px' %>
     </div>
 </div>
 <table style="background-color: white; width: 80%; margin: 0 auto;" class="<%= @funcionalidades.any? ? 'table-bordered' : '' %>">

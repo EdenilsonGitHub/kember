@@ -22,7 +22,7 @@
         <%= u.label "Fim projeto", class: 'label-form' %>
         <%= u.datetime_field :fim_projeto, class: 'form-control valor-form' %>
     </div>
-    <%= u.hidden_field :empresa_id, value: 1 %>
+    <%= u.hidden_field :empresa_id, value: Empresa.first.id %>
     <%= hidden_field_tag :usuario_id, @usuario_logado.id %>
     <div style="width: 100%; text-align: center">
         <%= link_to 'Cancelar', projetos_path, class: 'btn btn-danger' %>
