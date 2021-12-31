@@ -23,7 +23,7 @@ class UsuariosController < ApplicationController
     
     def create
         @usuario = Usuario.new(params.require(:usuario).permit(:nome, :login, :senha, :email, :foto, :admin, :senha_confirmation))
-        if @usuario.save(validate: false)
+        if @usuario.save
             if @usuario_logado
                 @aba_selecionada = "projetos"
                 redirect_to projetos_path

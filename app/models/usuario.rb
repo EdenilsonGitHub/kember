@@ -18,7 +18,7 @@ class Usuario < ActiveRecord::Base
     has_attached_file :foto, styles: { normal: "300x300>" }
     validates_attachment_content_type :foto, content_type: /\Aimage\/.*\z/
 
-    belongs_to :perfil
+    belongs_to :perfil, optional: true
 
     has_many :quadros
     has_many :usuario_empresas
